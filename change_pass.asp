@@ -1,6 +1,6 @@
-<%
+п»ї<%
 '---------------------------------------------------
-'Проверка на тип аутентификации
+'РџСЂРѕРІРµСЂРєР° РЅР° С‚РёРї Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё
 '---------------------------------------------------
 select case request.form("pr")
 	case "journal"
@@ -19,7 +19,7 @@ select case request.form("pr")
 		session("disc") = rs_prepod.fields(0)
 		session("auth") = false
 		if request.form("pr_journal_read") = "true" then response.redirect("journal_read.asp")
-		if session("user_fio") = "Студент" then response.redirect("journal_read.asp")
+		if session("user_fio") = "РЎС‚СѓРґРµРЅС‚" then response.redirect("journal_read.asp")
 		if session("type_root") = 1 or session("type_edit_journal") = 1 then
 			session("auth") = true
 			response.redirect("journal.asp")
@@ -68,7 +68,7 @@ session ("fio") = fio
 session ("pass")= pass
 end if
 '---------------------------------------------------
-'Защита от SQL-инъекции
+'Р—Р°С‰РёС‚Р° РѕС‚ SQL-РёРЅСЉРµРєС†РёРё
 '---------------------------------------------------
 for i=1 to len(fio)
 if len(fio)-6 > 0 then
@@ -84,7 +84,7 @@ end if
 if mid(fio,i,1)=";" then response.Redirect ("pass_update.asp?err=1")
 next
 '----------------------------------------------------
-'Подключение БД
+'РџРѕРґРєР»СЋС‡РµРЅРёРµ Р‘Р”
 '----------------------------------------------------
 Set Conn = Server.CreateObject("ADODB.Connection") 
 Set RS = Server.CreateObject("ADODB.Recordset") 
@@ -92,10 +92,10 @@ strDBPath = Server.MapPath("base.mdb")
 Conn.Open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & _
 strDBPath
 '----------------------------------------------------
-'Авторизация
+'РђРІС‚РѕСЂРёР·Р°С†РёСЏ
 '----------------------------------------------------
 '----------------------------------------------------
-'Проверка остальных пользователей, проверка прав администратора
+'РџСЂРѕРІРµСЂРєР° РѕСЃС‚Р°Р»СЊРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, РїСЂРѕРІРµСЂРєР° РїСЂР°РІ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
 '----------------------------------------------------
 strSQL = "SELECT tbl_user.id_user, tbl_user.user_fio, tbl_user.password, tbl_user.user_io, tbl_user.type_prepod, tbl_user.type_kl_rukovod, tbl_user.type_zav_otdel, tbl_user.type_administr, tbl_user.type_edit_journal, tbl_user.type_root, tbl_user.type_orsod, tbl_user.password_date FROM tbl_user WHERE (((tbl_user.user_fio)='" & fio &"'));"
 on error resume next

@@ -1,4 +1,4 @@
-<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
+п»ї<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
 <link rel="shortcut icon" href="images/favicon.ico" />
 <head>
 	<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="css/loaders.css">
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/metro.min.js"></script>
-	<title>ИС "Электронный журнал". Ведомость пропуска занятий</title>
+	<title>РРЎ "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р¶СѓСЂРЅР°Р»". Р’РµРґРѕРјРѕСЃС‚СЊ РїСЂРѕРїСѓСЃРєР° Р·Р°РЅСЏС‚РёР№</title>
     <style>
         .v-text {
             writing-mode: vertical-lr;
@@ -83,8 +83,8 @@
     <!-- #include file="header.asp" -->
 	<!-- #include file="pass_check.asp" -->
 <%
-'Защита от студентов
-if session("user") = "" or session("user") = "Студент" or session("user") = 0 then response.Redirect ("404.asp")
+'Р—Р°С‰РёС‚Р° РѕС‚ СЃС‚СѓРґРµРЅС‚РѕРІ
+if session("user") = "" or session("user") = "РЎС‚СѓРґРµРЅС‚" or session("user") = 0 then response.Redirect ("404.asp")
 %>
 
 <%
@@ -96,7 +96,7 @@ query = request.querystring("query")
 
 if query = 1 then
 
-'Выполняем подключение к БД
+'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
 Set con = Server.CreateObject("ADODB.Connection")
 Set rs_all = Server.CreateObject("ADODB.RecordSet")
 Set rs_sep = Server.CreateObject("ADODB.RecordSet")
@@ -383,70 +383,70 @@ rs_sem2.Close
 rs_total.Close
 %>
 
-<p style="margin: 0; padding: 0; float: left;"><a href="ved_propusk_zan.asp?query=0" ><button class="button"><span class="icon mif-undo"></span> Вернуться назад</button></a></p><p style="margin: 0; padding: 0; float: right;"><button class="button primary" onclick="window.print()"><span class="icon mif-printer"></span> Печать</button></p><br><br><br>
+<p style="margin: 0; padding: 0; float: left;"><a href="ved_propusk_zan.asp?query=0" ><button class="button"><span class="icon mif-undo"></span> Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a></p><p style="margin: 0; padding: 0; float: right;"><button class="button primary" onclick="window.print()"><span class="icon mif-printer"></span> РџРµС‡Р°С‚СЊ</button></p><br><br><br>
 </div>
 <div id=printableArea>
 <center>
 <%
 
 %>
-<h4><b>Пропуски занятий <%=cstr(rs_groupSearch.Fields(1)) %> на <%=dateFormatted %> г. (по неуважительной причине)</b></h4>
+<h4><b>РџСЂРѕРїСѓСЃРєРё Р·Р°РЅСЏС‚РёР№ <%=cstr(rs_groupSearch.Fields(1)) %> РЅР° <%=dateFormatted %> Рі. (РїРѕ РЅРµСѓРІР°Р¶РёС‚РµР»СЊРЅРѕР№ РїСЂРёС‡РёРЅРµ)</b></h4>
 
 <% if cnt > 1 then %>
 <table class="table striped hovered cell-hovered border bordered" id="ved_propusk_zan">
 <thead align=center style="font-weight: bold">
 <tr>
-    <th style="margin: 0;text-align: center;">№</th>
-    <th style="margin: 0;text-align: center;">Фамилия</th>
-    <% if not sep_empty then %><th><p class="v-text">Сентябрь</th>
+    <th style="margin: 0;text-align: center;">в„–</th>
+    <th style="margin: 0;text-align: center;">Р¤Р°РјРёР»РёСЏ</th>
+    <% if not sep_empty then %><th><p class="v-text">РЎРµРЅС‚СЏР±СЂСЊ</th>
     <% end if: if not oct_empty then  %>
-    <th><p class="v-text">Октябрь</th>
+    <th><p class="v-text">РћРєС‚СЏР±СЂСЊ</th>
     <% end if: if not nov_empty then  %>
-    <th><p class="v-text">Ноябрь</th>
+    <th><p class="v-text">РќРѕСЏР±СЂСЊ</th>
     <% end if: if not dec_empty then  %>
-    <th><p class="v-text">Декабрь</th>
+    <th><p class="v-text">Р”РµРєР°Р±СЂСЊ</th>
     <% end if %>
-    <th style="width:1;"><p style="text-align:center;">Итого<br>за 1<br>семестр</th>
+    <th style="width:1;"><p style="text-align:center;">РС‚РѕРіРѕ<br>Р·Р° 1<br>СЃРµРјРµСЃС‚СЂ</th>
     <% if not jan_empty then %>
-    <th><p class="v-text">Январь</th>
+    <th><p class="v-text">РЇРЅРІР°СЂСЊ</th>
     <% end if: if not feb_empty then %>
-    <th><p class="v-text">Февраль</th>
+    <th><p class="v-text">Р¤РµРІСЂР°Р»СЊ</th>
     <% end if: if not mar_empty then %>
-    <th><p class="v-text">Март</th>
+    <th><p class="v-text">РњР°СЂС‚</th>
     <% end if: if not apr_empty then %>
-    <th><p class="v-text">Апрель</th>
+    <th><p class="v-text">РђРїСЂРµР»СЊ</th>
     <% end if %>
-    <th style="width:1;"><p style="text-align:center;">Итого<br>за 2<br>семестр</th>
-    <th style="width:1;"><p style="text-align:center;">Всего</th>
+    <th style="width:1;"><p style="text-align:center;">РС‚РѕРіРѕ<br>Р·Р° 2<br>СЃРµРјРµСЃС‚СЂ</th>
+    <th style="width:1;"><p style="text-align:center;">Р’СЃРµРіРѕ</th>
 </tr>
 </thead>
 <tbody align=center>
 <%
-for i = 1 to cnt 'Запрос выполняется для каждого студента
-	if students(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		'Подготавливаем данные
+for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	if students(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
 		response.Write("<tr>")
 		
-		'Рисуем таблицу
-		                      response.Write("<td>" & i & "</td>") ' №
-                              response.Write("<td style='text-align:left; min-width:225px;'>" & students(i,2) & "</td>") ' Фамилия
-        if not sep_empty then response.Write("<td>" & students(i,3) & "</td>") ' Сентябрь
-        if not oct_empty then response.Write("<td>" & students(i,4) & "</td>") ' Октябрь
-        if not nov_empty then response.Write("<td>" & students(i,5) & "</td>") ' Ноябрь
-        if not dec_empty then response.Write("<td>" & students(i,6) & "</td>") ' Декабрь
-                              response.Write("<td style='font-weight: bold;'>" & students(i,7) & "</td>") ' 1 сем
-        if not jan_empty then response.Write("<td>" & students(i,8) & "</td>") ' Январь
-        if not feb_empty then response.Write("<td>" & students(i,9) & "</td>") ' Февраль
-        if not mar_empty then response.Write("<td>" & students(i,10) & "</td>")' Март
-        if not apr_empty then response.Write("<td>" & students(i,11) & "</td>")' Апрель
-                              response.Write("<td style='font-weight: bold;'>" & students(i,12) & "</td>")' 2 сем
-                              response.Write("<td style='font-weight: bold;'>" & students(i,13) & "</td>")' Всего
+		'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
+		                      response.Write("<td>" & i & "</td>") ' в„–
+                              response.Write("<td style='text-align:left; min-width:225px;'>" & students(i,2) & "</td>") ' Р¤Р°РјРёР»РёСЏ
+        if not sep_empty then response.Write("<td>" & students(i,3) & "</td>") ' РЎРµРЅС‚СЏР±СЂСЊ
+        if not oct_empty then response.Write("<td>" & students(i,4) & "</td>") ' РћРєС‚СЏР±СЂСЊ
+        if not nov_empty then response.Write("<td>" & students(i,5) & "</td>") ' РќРѕСЏР±СЂСЊ
+        if not dec_empty then response.Write("<td>" & students(i,6) & "</td>") ' Р”РµРєР°Р±СЂСЊ
+                              response.Write("<td style='font-weight: bold;'>" & students(i,7) & "</td>") ' 1 СЃРµРј
+        if not jan_empty then response.Write("<td>" & students(i,8) & "</td>") ' РЇРЅРІР°СЂСЊ
+        if not feb_empty then response.Write("<td>" & students(i,9) & "</td>") ' Р¤РµРІСЂР°Р»СЊ
+        if not mar_empty then response.Write("<td>" & students(i,10) & "</td>")' РњР°СЂС‚
+        if not apr_empty then response.Write("<td>" & students(i,11) & "</td>")' РђРїСЂРµР»СЊ
+                              response.Write("<td style='font-weight: bold;'>" & students(i,12) & "</td>")' 2 СЃРµРј
+                              response.Write("<td style='font-weight: bold;'>" & students(i,13) & "</td>")' Р’СЃРµРіРѕ
 		
 		response.Write("</tr>")
 	end if
 next
 response.Write("<tr>")
-                      response.Write("<td colspan=2 style='text-align: center; font-weight: bold;'>Итого:</td>")
+                      response.Write("<td colspan=2 style='text-align: center; font-weight: bold;'>РС‚РѕРіРѕ:</td>")
 if not sep_empty then response.Write("<td>" & total_sep & "</td>")
 if not oct_empty then response.Write("<td>" & total_oct & "</td>")
 if not nov_empty then response.Write("<td>" & total_nov & "</td>")
@@ -466,8 +466,8 @@ response.Write("</tr>")
 <div id=notPrintableArea>
 <% else %>
 <br>
-<h2><b>Во время выполнения запроса произошла ошибка!</b></h1>
-<h4 style="width: 65%">В базе данных не были обнаружены записи о студентах, либо их слишком мало!</h4>
+<h2><b>Р’Рѕ РІСЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°!</b></h1>
+<h4 style="width: 65%">Р’ Р±Р°Р·Рµ РґР°РЅРЅС‹С… РЅРµ Р±С‹Р»Рё РѕР±РЅР°СЂСѓР¶РµРЅС‹ Р·Р°РїРёСЃРё Рѕ СЃС‚СѓРґРµРЅС‚Р°С…, Р»РёР±Рѕ РёС… СЃР»РёС€РєРѕРј РјР°Р»Рѕ!</h4>
 <% end if %>
 <%
 elseif query = 0 then
@@ -475,15 +475,15 @@ today_input = mid(date(), 7, 4) + "-" + mid(date(), 4, 2) + "-" + mid(date(), 1,
 %>
 <form action="ved_propusk_zan.asp?query=1" method="post">
 <center>
-<h4 style="width: 75%;">Вы собираетесь сформировать ведомость пропусков занятий (по неуважительным причинам) по группам в разрезе месяцев и семестров.</h4>
-<h5>Выберие группу и скоректируйте дату, если нужно, и нужно ли вам отображать пустые колонки.</h5>
+<h4 style="width: 75%;">Р’С‹ СЃРѕР±РёСЂР°РµС‚РµСЃСЊ СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ РІРµРґРѕРјРѕСЃС‚СЊ РїСЂРѕРїСѓСЃРєРѕРІ Р·Р°РЅСЏС‚РёР№ (РїРѕ РЅРµСѓРІР°Р¶РёС‚РµР»СЊРЅС‹Рј РїСЂРёС‡РёРЅР°Рј) РїРѕ РіСЂСѓРїРїР°Рј РІ СЂР°Р·СЂРµР·Рµ РјРµСЃСЏС†РµРІ Рё СЃРµРјРµСЃС‚СЂРѕРІ.</h4>
+<h5>Р’С‹Р±РµСЂРёРµ РіСЂСѓРїРїСѓ Рё СЃРєРѕСЂРµРєС‚РёСЂСѓР№С‚Рµ РґР°С‚Сѓ, РµСЃР»Рё РЅСѓР¶РЅРѕ, Рё РЅСѓР¶РЅРѕ Р»Рё РІР°Рј РѕС‚РѕР±СЂР°Р¶Р°С‚СЊ РїСѓСЃС‚С‹Рµ РєРѕР»РѕРЅРєРё.</h5>
 <table class="form-table" style="width: 400px;">
     <tr>
-        <td align=right>Группа:  </td>
+        <td align=right>Р“СЂСѓРїРїР°:В В </td>
         <td>
             <div class="input-control text" style="width: 150px">
             <select name="groupSearch" required>
-                <option disabled selected value>Выберите...</option>
+                <option disabled selected value>Р’С‹Р±РµСЂРёС‚Рµ...</option>
 		            <% 
                     Set rs_group = Server.CreateObject("ADODB.RecordSet")
                     Set con = Server.CreateObject("ADODB.Connection")
@@ -507,15 +507,15 @@ today_input = mid(date(), 7, 4) + "-" + mid(date(), 4, 2) + "-" + mid(date(), 1,
         </td>
     </tr>
     <tr>
-        <td align=right>Дата:  </td>
+        <td align=right>Р”Р°С‚Р°:В В </td>
         <td>
             <div class="input-control text" style="width: 150px">
 	            <input type="date" name="date" value="<%= today_input %>" style="font-family: 'Segoe UI', 'Open Sans', sans-serif, serif; font-size: 0.875rem;">
             </div>
         </td>
     </tr>
-    <tr style="height:49px;" title="Переключает отображение пустых колонок, т.е. месяцев в которых отсутсвуют полностью отметки о пропусках по неуважительной причине.">
-        <td align=right>Пустые колонки:  </td>
+    <tr style="height:49px;" title="РџРµСЂРµРєР»СЋС‡Р°РµС‚ РѕС‚РѕР±СЂР°Р¶РµРЅРёРµ РїСѓСЃС‚С‹С… РєРѕР»РѕРЅРѕРє, С‚.Рµ. РјРµСЃСЏС†РµРІ РІ РєРѕС‚РѕСЂС‹С… РѕС‚СЃСѓС‚СЃРІСѓСЋС‚ РїРѕР»РЅРѕСЃС‚СЊСЋ РѕС‚РјРµС‚РєРё Рѕ РїСЂРѕРїСѓСЃРєР°С… РїРѕ РЅРµСѓРІР°Р¶РёС‚РµР»СЊРЅРѕР№ РїСЂРёС‡РёРЅРµ.">
+        <td align=right>РџСѓСЃС‚С‹Рµ РєРѕР»РѕРЅРєРё:В В </td>
         <td>
             <label class="switch-original">
                 <input type="checkbox" name="empty-cols" checked>
@@ -534,7 +534,7 @@ today_input = mid(date(), 7, 4) + "-" + mid(date(), 4, 2) + "-" + mid(date(), 1,
         }
     }
 </script>
-<button type=submit class="button primary">Подтвердить</button> <a href="group_change.asp"></a>
+<button type=submit class="button primary">РџРѕРґС‚РІРµСЂРґРёС‚СЊ</button> <a href="group_change.asp"></a>
 </center>
 </form>
 <%
@@ -544,9 +544,9 @@ end if
 <br>
 <center>
 
-<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору группы</button><br>
-<a href="help/02_12.asp" ><button class="button success"><span class="icon mif-info"></span> Помощь</button></a>
-<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Выход</button></a>
+<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РіСЂСѓРїРїС‹</button><br>
+<a href="help/02_12.asp" ><button class="button success"><span class="icon mif-info"></span> РџРѕРјРѕС‰СЊ</button></a>
+<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Р’С‹С…РѕРґ</button></a>
 </center>
 </td>
 </tr>

@@ -1,4 +1,4 @@
-<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
+п»ї<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
 <link rel="shortcut icon" href="images/favicon.ico" />
 <head>
 	<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="css/loaders.css">
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/metro.min.js"></script>
-	<title>ИС "Электронный журнал". Учёт поощирительных баллов</title>
+	<title>РРЎ "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р¶СѓСЂРЅР°Р»". РЈС‡С‘С‚ РїРѕРѕС‰РёСЂРёС‚РµР»СЊРЅС‹С… Р±Р°Р»Р»РѕРІ</title>
     <style>
         summary 
         {
@@ -58,14 +58,14 @@
     <!-- #include file="header.asp" -->
     <!-- #include file="pass_check.asp" -->
 <%
-    if session("user") = "" or session("user") = "Студент" or session("user") = 0 then response.Redirect ("404.asp")
-    if request.QueryString("addNew") = 1 then ' Форма на добавление записи в БД
+    if session("user") = "" or session("user") = "РЎС‚СѓРґРµРЅС‚" or session("user") = 0 then response.Redirect ("404.asp")
+    if request.QueryString("addNew") = 1 then ' Р¤РѕСЂРјР° РЅР° РґРѕР±Р°РІР»РµРЅРёРµ Р·Р°РїРёСЃРё РІ Р‘Р”
     group = session("gr")%>
     <center>
-    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Вернуться назад</button></a>
-    <h3>Добавление записи о поощрениях к группе <%=group%></h3>
+    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a>
+    <h3>Р”РѕР±Р°РІР»РµРЅРёРµ Р·Р°РїРёСЃРё Рѕ РїРѕРѕС‰СЂРµРЅРёСЏС… Рє РіСЂСѓРїРїРµ <%=group%></h3>
     <%
-    'Выполняем подключение к БД
+    'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     Set con = Server.CreateObject("ADODB.Connection")
     Set rs  = Server.CreateObject("ADODB.RecordSet")
     strdbpath=server.mappath("base.mdb")
@@ -82,7 +82,7 @@
         %>
         <div class="input-control text" style="width: 150px">
 	    <select name="student" required>
-            <option disabled selected value>Студент</option>
+            <option disabled selected value>РЎС‚СѓРґРµРЅС‚</option>
 		    <%
             strSQL = "SELECT tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio, IIf(IsNull([score_value]),0,[score_value]) AS score_val FROM tbl_group INNER JOIN (tbl_student LEFT JOIN tbl_score ON tbl_student.id_student = tbl_score.score_student) ON tbl_group.id_group = tbl_student.group_name WHERE (((tbl_group.group_name)='" + group + "')) ORDER BY tbl_student.student_fio;"
             rs.Open strSQL, con
@@ -97,19 +97,19 @@
 	    </select>
         </div>
         <div class="input-control text" style="width: 80px">
-            <input name="value" type="number" step="0.25" placeholder="Баллы" required>
+            <input name="value" type="number" step="0.25" placeholder="Р‘Р°Р»Р»С‹" required>
         </div>
         <br />
         <div class="input-control text" style="width: 235px">
-        <textarea name="comment" rows="10" cols="45" placeholder="Комментарий" maxlength="254"></textarea>
+        <textarea name="comment" rows="10" cols="45" placeholder="РљРѕРјРјРµРЅС‚Р°СЂРёР№" maxlength="254"></textarea>
 	    </div>
         <br /><br /><br /><br /><br />
-	    <button type="submit" class="button primary"><span class="icon mif-pencil"></span>  Добавить запись</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>  Сброс</button>
+	    <button type="submit" class="button primary"><span class="icon mif-pencil"></span>В В Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button>
         <br /><br />
     </form>
     </center>
 <%
-    elseif request.QueryString("addNew") = 2 then ' Запрос на добавление записи в БД
+    elseif request.QueryString("addNew") = 2 then ' Р—Р°РїСЂРѕСЃ РЅР° РґРѕР±Р°РІР»РµРЅРёРµ Р·Р°РїРёСЃРё РІ Р‘Р”
     group = request.Form("gr")
     stud  = request.Form("student")
     value = request.Form("value")
@@ -122,23 +122,23 @@
     yyyy = mid(today, 7, 4)
     nowDate = mm + "/" + dd + "/" + yyyy
 
-    'Создаем подключение для запросов
+    'РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ
     strdbpath=server.mappath("base.mdb")
     strDbConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="& strdbpath & ";"
     Set objConn = Server.CreateObject("ADODB.Connection")
     objConn.Open(strDbConnection)
-    strSQL = "INSERT INTO tbl_score (score_student, score_value, score_author, score_date, score_comment) VALUES (" & stud & ", " & value & ", " & prepod & ", #" & nowDate & "#, '" & comment & "');" 'Подготавливаем запрос
-    'Выполняем запрос
+    strSQL = "INSERT INTO tbl_score (score_student, score_value, score_author, score_date, score_comment) VALUES (" & stud & ", " & value & ", " & prepod & ", #" & nowDate & "#, '" & comment & "');" 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
+    'Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃ
 	objConn.Execute(strSQL)
     response.Redirect("uchet_ballov.asp")
 
-    elseif request.QueryString("edit") > 0 then ' Форма на редактирование комментария записи в БД
+    elseif request.QueryString("edit") > 0 then ' Р¤РѕСЂРјР° РЅР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ Р·Р°РїРёСЃРё РІ Р‘Р”
     record = request.QueryString("edit")%>
     <center>
-    <button class="button subinfo" onClick="window.history.go(-1)"><span class="icon mif-undo"></span> Вернуться назад</button>
-    <h3>Редактирования комментария записи №<%=record%></h3>
+    <button class="button subinfo" onClick="window.history.go(-1)"><span class="icon mif-undo"></span> Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button>
+    <h3>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ Р·Р°РїРёСЃРё в„–<%=record%></h3>
     <%
-    'Выполняем подключение к БД
+    'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     Set con = Server.CreateObject("ADODB.Connection")
     Set rs  = Server.CreateObject("ADODB.RecordSet")
     strdbpath=server.mappath("base.mdb")
@@ -158,39 +158,39 @@
         </div>
         <br />
         <div class="input-control text" style="width: 235px">
-        <textarea name="comment" rows="10" cols="45" placeholder="Комментарий" maxlength="254" required><%=rs.Fields("score_comment")%></textarea>
+        <textarea name="comment" rows="10" cols="45" placeholder="РљРѕРјРјРµРЅС‚Р°СЂРёР№" maxlength="254" required><%=rs.Fields("score_comment")%></textarea>
 	    </div>
         <%
         rs.Close
         %>
         <br /><br /><br /><br /><br />
-	    <button type="submit" class="button primary"><span class="icon mif-pencil"></span>  Редактировать запись</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>  Сброс</button>
+	    <button type="submit" class="button primary"><span class="icon mif-pencil"></span>В В Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button>
     </form>
     </center>
     <br />
 <%
-    elseif request.QueryString("editExec") = 1 then ' Запрос на редактирование комментария в БД
+    elseif request.QueryString("editExec") = 1 then ' Р—Р°РїСЂРѕСЃ РЅР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєРѕРјРјРµРЅС‚Р°СЂРёСЏ РІ Р‘Р”
     record = request.Form("record")
     comment = request.Form("comment")
 
-    'Создаем подключение для запросов
+    'РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ
     strdbpath=server.mappath("base.mdb")
     strDbConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="& strdbpath & ";"
     Set objConn = Server.CreateObject("ADODB.Connection")
     objConn.Open(strDbConnection)
-    strSQL = "UPDATE tbl_score SET score_comment = '" + comment + "' WHERE id_score = " + record + ";" 'Подготавливаем запрос
-    'Выполняем запрос
+    strSQL = "UPDATE tbl_score SET score_comment = '" + comment + "' WHERE id_score = " + record + ";" 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
+    'Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃ
 	objConn.Execute(strSQL)
     response.Redirect("uchet_ballov.asp?history=1")
 
-    elseif request.QueryString("history") = 1 then ' Просмотр истории записей из БД (без фильтрации)
+    elseif request.QueryString("history") = 1 then ' РџСЂРѕСЃРјРѕС‚СЂ РёСЃС‚РѕСЂРёРё Р·Р°РїРёСЃРµР№ РёР· Р‘Р” (Р±РµР· С„РёР»СЊС‚СЂР°С†РёРё)
     group = session("gr")%>
     <center>
-    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Вернуться назад</button></a>
-    <h3>Просмотр истории записей о поощрениях группы <%=group%></h3>
+    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a>
+    <h3>РџСЂРѕСЃРјРѕС‚СЂ РёСЃС‚РѕСЂРёРё Р·Р°РїРёСЃРµР№ Рѕ РїРѕРѕС‰СЂРµРЅРёСЏС… РіСЂСѓРїРїС‹ <%=group%></h3>
 
     <%
-    'Выполняем подключение к БД
+    'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     Set con = Server.CreateObject("ADODB.Connection")
     Set rs  = Server.CreateObject("ADODB.RecordSet")
     Set rs2  = Server.CreateObject("ADODB.RecordSet")
@@ -200,17 +200,17 @@
     strSQL = "SELECT tbl_score.id_score, tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio, tbl_score.score_value, tbl_user.user_fio, tbl_score.score_date, tbl_score.score_comment FROM tbl_group INNER JOIN (tbl_user INNER JOIN (tbl_student INNER JOIN tbl_score ON tbl_student.id_student = tbl_score.score_student) ON tbl_user.id_user = tbl_score.score_author) ON tbl_group.id_group = tbl_student.group_name WHERE (((tbl_group.group_name)='" + group + "')) ORDER BY tbl_score.score_date DESC;"
     rs.Open strSQL, con, 3, 3
 
-    dim history(5000,6) 'Массив на 5000 записей истории
+    dim history(5000,6) 'РњР°СЃСЃРёРІ РЅР° 5000 Р·Р°РїРёСЃРµР№ РёСЃС‚РѕСЂРёРё
     if rs.RecordCount > 0 then
 	    ij = 1
 	    cnt = 1
 	    while rs.EOF <> true
 		    history(ij,1) = rs.Fields("id_score")      'ID
-		    history(ij,2) = rs.Fields("student_fio")   'ФИО Студента
-		    history(ij,3) = rs.Fields("score_value")   'Баллы
-            history(ij,4) = rs.Fields("user_fio")      'ФИО Преподавателя
-            history(ij,5) = rs.Fields("score_comment") 'Комментарий
-            history(ij,6) = rs.Fields("score_date")    'Дата
+		    history(ij,2) = rs.Fields("student_fio")   'Р¤РРћ РЎС‚СѓРґРµРЅС‚Р°
+		    history(ij,3) = rs.Fields("score_value")   'Р‘Р°Р»Р»С‹
+            history(ij,4) = rs.Fields("user_fio")      'Р¤РРћ РџСЂРµРїРѕРґР°РІР°С‚РµР»СЏ
+            history(ij,5) = rs.Fields("score_comment") 'РљРѕРјРјРµРЅС‚Р°СЂРёР№
+            history(ij,6) = rs.Fields("score_date")    'Р”Р°С‚Р°
             ij = ij + 1
             cnt = cnt + 1
             rs.MoveNext
@@ -219,10 +219,10 @@
     if cnt > 0 then
     %>
     <form name="filter" action="uchet_ballov.asp?history=2" method="post" style="margin-bottom: 0">
-    Фильтрация по студенту
+    Р¤РёР»СЊС‚СЂР°С†РёСЏ РїРѕ СЃС‚СѓРґРµРЅС‚Сѓ
 	    <div class="input-control text" style="width: 185px">
 	    <select name="studentFilter" required>
-            <option disabled selected value>Выберите...</option>
+            <option disabled selected value>Р’С‹Р±РµСЂРёС‚Рµ...</option>
 		    <% rs2.Open "SELECT tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio FROM tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name WHERE (((tbl_group.group_name)='" + group + "')) ORDER BY tbl_student.student_fio;", con
              set objId = rs2.Fields("id_student")
              set objName = rs2.Fields("student_fio")
@@ -233,17 +233,17 @@
                rs2.Close %>
 	    </select>
 	    </div>
-        <button type="submit" class="button primary"><span class="icon mif-filter"></span>  Выбрать</button> <a href="?history=1"><button type="button" class="button danger"><span class="icon mif-undo"></span>  Сброс</button></a><br><br>
+        <button type="submit" class="button primary"><span class="icon mif-filter"></span>В В Р’С‹Р±СЂР°С‚СЊ</button> <a href="?history=1"><button type="button" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button></a><br><br>
     </form>
     <table class="table striped hovered cell-hovered border bordered" style="width: 100%">
     <thead align=center style="font-weight: bold">
-    <tr><th>ID</th><th>Студент</th><th>Баллы</th><th>Преподаватель</th><th>Комментарий</th><th>Дата</th><th>Редактирование</th></tr>
+    <tr><th>ID</th><th>РЎС‚СѓРґРµРЅС‚</th><th>Р‘Р°Р»Р»С‹</th><th>РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ</th><th>РљРѕРјРјРµРЅС‚Р°СЂРёР№</th><th>Р”Р°С‚Р°</th><th>Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ</th></tr>
     </thead>
     <tbody align=center>
     <%
-        for i = 1 to cnt 'Запрос выполняется для каждого студента
-	        if history(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		        'Подготавливаем данные
+        for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	        if history(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		        'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
                 if history(i,3) < 0 then
                 response.Write("<tr style='background-color: #4390df;color: white;'>")
                 elseif history(i,3) > 0 then
@@ -252,14 +252,14 @@
                 response.Write("<tr>")
                 end if
                 
-		        'Рисуем таблицу
+		        'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
 		        response.Write("<td style='width:1px'>" & history(i,1) & "</td>") 'ID
-                response.Write("<td style='width:25%'>" & history(i,2) & "</td>") 'ФИО Студента
-                response.Write("<td style='width:1px'>" & history(i,3) & "</td>") 'Баллы
-                response.Write("<td style='width:1px'>" & history(i,4) & "</td>") 'ФИО Преподавателя
-                response.Write("<td style='width:50%'>" & history(i,5) & "</td>") 'Комментарий
-                response.Write("<td style='width:1px'>" & history(i,6) & "</td>") 'Дата
-                response.Write("<td style='width:15%'><a href='?edit=" & history(i,1) & "'><button class='button subinfo'><span class='icon mif-pencil'></span> Изменить</button></a></td>") 'Кнопка редактирования
+                response.Write("<td style='width:25%'>" & history(i,2) & "</td>") 'Р¤РРћ РЎС‚СѓРґРµРЅС‚Р°
+                response.Write("<td style='width:1px'>" & history(i,3) & "</td>") 'Р‘Р°Р»Р»С‹
+                response.Write("<td style='width:1px'>" & history(i,4) & "</td>") 'Р¤РРћ РџСЂРµРїРѕРґР°РІР°С‚РµР»СЏ
+                response.Write("<td style='width:50%'>" & history(i,5) & "</td>") 'РљРѕРјРјРµРЅС‚Р°СЂРёР№
+                response.Write("<td style='width:1px'>" & history(i,6) & "</td>") 'Р”Р°С‚Р°
+                response.Write("<td style='width:15%'><a href='?edit=" & history(i,1) & "'><button class='button subinfo'><span class='icon mif-pencil'></span> РР·РјРµРЅРёС‚СЊ</button></a></td>") 'РљРЅРѕРїРєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
 
 		        response.Write("</tr>")
 	        end if
@@ -269,19 +269,19 @@
     </table>
     <% elseif cnt <= 0 or cnt = "" then %>
     <br>
-    <h4><b>Записей не найдено!</b></h4>
+    <h4><b>Р—Р°РїРёСЃРµР№ РЅРµ РЅР°Р№РґРµРЅРѕ!</b></h4>
     <% end if %>
     </center>
     <br />
 <%
-    elseif request.QueryString("history") = 2 then ' Просмотр истории записей из БД (без фильтрации)
+    elseif request.QueryString("history") = 2 then ' РџСЂРѕСЃРјРѕС‚СЂ РёСЃС‚РѕСЂРёРё Р·Р°РїРёСЃРµР№ РёР· Р‘Р” (Р±РµР· С„РёР»СЊС‚СЂР°С†РёРё)
     group = session("gr")%>
     <center>
-    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Вернуться назад</button></a>
-    <h3>Просмотр истории записей о поощрениях студента группы <%=group%></h3>
+    <a href="uchet_ballov.asp" ><button class="button subinfo"><span class="icon mif-undo"></span> Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a>
+    <h3>РџСЂРѕСЃРјРѕС‚СЂ РёСЃС‚РѕСЂРёРё Р·Р°РїРёСЃРµР№ Рѕ РїРѕРѕС‰СЂРµРЅРёСЏС… СЃС‚СѓРґРµРЅС‚Р° РіСЂСѓРїРїС‹ <%=group%></h3>
 
     <%
-    'Выполняем подключение к БД
+    'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     Set con = Server.CreateObject("ADODB.Connection")
     Set rs  = Server.CreateObject("ADODB.RecordSet")
     Set rs2  = Server.CreateObject("ADODB.RecordSet")
@@ -292,10 +292,10 @@
     rs.Open strSQL, con, 3, 3
     %>
     <form name="filter" action="uchet_ballov.asp?history=2" method="post" style="margin-bottom: 0">
-    Фильтрация по студенту
+    Р¤РёР»СЊС‚СЂР°С†РёСЏ РїРѕ СЃС‚СѓРґРµРЅС‚Сѓ
 	    <div class="input-control text" style="width: 185px">
 	    <select name="studentFilter" required>
-            <option disabled selected value>Выберите...</option>
+            <option disabled selected value>Р’С‹Р±РµСЂРёС‚Рµ...</option>
 		    <% rs2.Open "SELECT tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio FROM tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name WHERE (((tbl_group.group_name)='" + group + "')) ORDER BY tbl_student.student_fio;", con
              set objId = rs2.Fields("id_student")
              set objName = rs2.Fields("student_fio")
@@ -306,20 +306,20 @@
                rs2.Close %>
 	    </select>
 	    </div>
-        <button type="submit" class="button primary"><span class="icon mif-filter"></span>  Выбрать</button> <a href="?history=1"><button type="button" class="button danger"><span class="icon mif-undo"></span>  Сброс</button></a><br><br>
+        <button type="submit" class="button primary"><span class="icon mif-filter"></span>В В Р’С‹Р±СЂР°С‚СЊ</button> <a href="?history=1"><button type="button" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button></a><br><br>
     </form>
     <%
-    dim history_filtered(3000,6) 'Массив на 5000 записей истории
+    dim history_filtered(3000,6) 'РњР°СЃСЃРёРІ РЅР° 5000 Р·Р°РїРёСЃРµР№ РёСЃС‚РѕСЂРёРё
     if rs.RecordCount > 0 then
 	    ij = 1
 	    cnt = 1
 	    while rs.EOF <> true
 		    history_filtered(ij,1) = rs.Fields("id_score")      'ID
-		    history_filtered(ij,2) = rs.Fields("student_fio")   'ФИО Студента
-		    history_filtered(ij,3) = rs.Fields("score_value")   'Баллы
-            history_filtered(ij,4) = rs.Fields("user_fio")      'ФИО Преподавателя
-            history_filtered(ij,5) = rs.Fields("score_comment") 'Комментарий
-            history_filtered(ij,6) = rs.Fields("score_date")    'Дата
+		    history_filtered(ij,2) = rs.Fields("student_fio")   'Р¤РРћ РЎС‚СѓРґРµРЅС‚Р°
+		    history_filtered(ij,3) = rs.Fields("score_value")   'Р‘Р°Р»Р»С‹
+            history_filtered(ij,4) = rs.Fields("user_fio")      'Р¤РРћ РџСЂРµРїРѕРґР°РІР°С‚РµР»СЏ
+            history_filtered(ij,5) = rs.Fields("score_comment") 'РљРѕРјРјРµРЅС‚Р°СЂРёР№
+            history_filtered(ij,6) = rs.Fields("score_date")    'Р”Р°С‚Р°
             ij = ij + 1
             cnt = cnt + 1
             rs.MoveNext
@@ -329,13 +329,13 @@
     %>
     <table class="table striped hovered cell-hovered border bordered" style="width: 100%">
     <thead align=center style="font-weight: bold">
-    <tr><th>ID</th><th>Студент</th><th>Баллы</th><th>Преподаватель</th><th>Комментарий</th><th>Дата</th><th>Редактировать</th></tr>
+    <tr><th>ID</th><th>РЎС‚СѓРґРµРЅС‚</th><th>Р‘Р°Р»Р»С‹</th><th>РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ</th><th>РљРѕРјРјРµРЅС‚Р°СЂРёР№</th><th>Р”Р°С‚Р°</th><th>Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</th></tr>
     </thead>
     <tbody align=center>
     <%
-        for i = 1 to cnt 'Запрос выполняется для каждого студента
-	        if history_filtered(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		        'Подготавливаем данные
+        for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	        if history_filtered(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		        'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
                 if history_filtered(i,3) < 0 then
                 response.Write("<tr style='background-color: #4390df;color: white;'>")
                 elseif history_filtered(i,3) > 0 then
@@ -344,14 +344,14 @@
                 response.Write("<tr>")
                 end if
 
-		        'Рисуем таблицу
+		        'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
 		        response.Write("<td style='width:1px'>" & history_filtered(i,1) & "</td>") 'ID
-                response.Write("<td style='width:25%'>" & history_filtered(i,2) & "</td>") 'ФИО Студента
-                response.Write("<td style='width:1px'>" & history_filtered(i,3) & "</td>") 'Баллы
-                response.Write("<td style='width:1px'>" & history_filtered(i,4) & "</td>") 'ФИО Преподавателя
-                response.Write("<td style='width:50%'>" & history_filtered(i,5) & "</td>") 'Комментарий
-                response.Write("<td style='width:1px'>" & history_filtered(i,6) & "</td>") 'Дата
-                response.Write("<td style='width:15%'><a href='?edit=" & history_filtered(i,1) & "'><button class='button subinfo'><span class='icon mif-pencil'></span> Изменить</button></a></td>") 'Кнопка редактирования
+                response.Write("<td style='width:25%'>" & history_filtered(i,2) & "</td>") 'Р¤РРћ РЎС‚СѓРґРµРЅС‚Р°
+                response.Write("<td style='width:1px'>" & history_filtered(i,3) & "</td>") 'Р‘Р°Р»Р»С‹
+                response.Write("<td style='width:1px'>" & history_filtered(i,4) & "</td>") 'Р¤РРћ РџСЂРµРїРѕРґР°РІР°С‚РµР»СЏ
+                response.Write("<td style='width:50%'>" & history_filtered(i,5) & "</td>") 'РљРѕРјРјРµРЅС‚Р°СЂРёР№
+                response.Write("<td style='width:1px'>" & history_filtered(i,6) & "</td>") 'Р”Р°С‚Р°
+                response.Write("<td style='width:15%'><a href='?edit=" & history_filtered(i,1) & "'><button class='button subinfo'><span class='icon mif-pencil'></span> РР·РјРµРЅРёС‚СЊ</button></a></td>") 'РљРЅРѕРїРєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
 
 		        response.Write("</tr>")
 	        end if
@@ -361,15 +361,15 @@
     </table>
     <% elseif cnt <= 0 or cnt = "" then %>
     <br>
-    <h4><b>Записей не найдено!</b></h4>
+    <h4><b>Р—Р°РїРёСЃРµР№ РЅРµ РЅР°Р№РґРµРЅРѕ!</b></h4>
     <% end if %>
     </center>
     <br />
 <%
-    else ' Основная страница
+    else ' РћСЃРЅРѕРІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°
     group = session("gr")
 
-    'Выполняем подключение к БД
+    'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
     Set con = Server.CreateObject("ADODB.Connection")
     Set rs  = Server.CreateObject("ADODB.RecordSet")
     strdbpath=server.mappath("base.mdb")
@@ -378,14 +378,14 @@
     strSQL = "SELECT tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio, Sum(tbl_score.score_value) AS [sum_score_value] FROM tbl_group INNER JOIN (tbl_student LEFT JOIN tbl_score ON tbl_student.id_student = tbl_score.score_student) ON tbl_group.id_group = tbl_student.group_name GROUP BY tbl_group.id_group, tbl_group.group_name, tbl_student.id_student, tbl_student.student_fio HAVING (((tbl_group.group_name)='" + group + "')) ORDER BY tbl_student.student_fio;"
     rs.Open strSQL, con, 3, 3
 
-    dim students(3000,3) 'Массив на 3000 студентов
+    dim students(3000,3) 'РњР°СЃСЃРёРІ РЅР° 3000 СЃС‚СѓРґРµРЅС‚РѕРІ
     if rs.RecordCount > 0 then
 	    ij = 1
 	    cnt = 1
 	    while rs.EOF <> true
 		    students(ij,1) = rs.Fields("id_student") 'ID
-		    students(ij,2) = rs.Fields("student_fio") 'ФИО
-		    if rs.Fields("sum_score_value") <> "" then students(ij,3) = rs.Fields("sum_score_value") else students(ij,3) = 0 'Текущая сумма баллов
+		    students(ij,2) = rs.Fields("student_fio") 'Р¤РРћ
+		    if rs.Fields("sum_score_value") <> "" then students(ij,3) = rs.Fields("sum_score_value") else students(ij,3) = 0 'РўРµРєСѓС‰Р°СЏ СЃСѓРјРјР° Р±Р°Р»Р»РѕРІ
             ij = ij + 1
             cnt = cnt + 1
             rs.MoveNext
@@ -393,18 +393,18 @@
     end if
 %>  
     <center>
-    <a href="?addNew=1" ><button class="button primary"><span class="icon mif-pencil"></span> Новая запись</button></a>
-    <a href="?history=1" ><button class="button subinfo"><span class="icon mif-history"></span> Просмотр истории записей</button></a>
-    <h3>Сумма поощрительных баллов студентов группы <%=group%></h3>
+    <a href="?addNew=1" ><button class="button primary"><span class="icon mif-pencil"></span> РќРѕРІР°СЏ Р·Р°РїРёСЃСЊ</button></a>
+    <a href="?history=1" ><button class="button subinfo"><span class="icon mif-history"></span> РџСЂРѕСЃРјРѕС‚СЂ РёСЃС‚РѕСЂРёРё Р·Р°РїРёСЃРµР№</button></a>
+    <h3>РЎСѓРјРјР° РїРѕРѕС‰СЂРёС‚РµР»СЊРЅС‹С… Р±Р°Р»Р»РѕРІ СЃС‚СѓРґРµРЅС‚РѕРІ РіСЂСѓРїРїС‹ <%=group%></h3>
     <table class="table striped hovered cell-hovered border bordered" style="width: 50vw">
     <thead align=center style="font-weight: bold">
-    <tr><th>№</th><th>ФИО</th><th>Сумма баллов</th></tr>
+    <tr><th>в„–</th><th>Р¤РРћ</th><th>РЎСѓРјРјР° Р±Р°Р»Р»РѕРІ</th></tr>
     </thead>
     <tbody align=center>
 <%
-    for i = 1 to cnt 'Запрос выполняется для каждого студента
-	    if students(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		    'Подготавливаем данные
+    for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	    if students(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		    'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
 		    if students(i,3) > 0 then
             response.Write("<tr style='background-color: #60a917;color: white;'>")
             elseif students(i,3) = 0 then
@@ -413,7 +413,7 @@
             response.Write("<tr style='background-color: #4390df;color: white;'>")
             end if
 		
-		    'Рисуем таблицу
+		    'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
 		    response.Write("<td style='width:1px'>" & i & "</td>")
             response.Write("<td style='width:50%'>" & students(i,2) & "</td>")
             response.Write("<td style='width:50%'>" & students(i,3) & "</td>")
@@ -428,10 +428,10 @@
 <br>
 <% end if %>
 <center>
-<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору дисциплин и ведомостей</button><br>
-<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору группы</button><br>
-<a href="help/03_10.asp" ><button class="button success"><span class="icon mif-info"></span> Помощь</button></a>
-<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Выход</button></a>
+<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РґРёСЃС†РёРїР»РёРЅ Рё РІРµРґРѕРјРѕСЃС‚РµР№</button><br>
+<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РіСЂСѓРїРїС‹</button><br>
+<a href="help/03_10.asp" ><button class="button success"><span class="icon mif-info"></span> РџРѕРјРѕС‰СЊ</button></a>
+<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Р’С‹С…РѕРґ</button></a>
 </center>
 </td>
 </tr>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+п»ї<?xml version="1.0" encoding="windows-1251"?>
 <style>
 .app-bar {
 	background-color: #1787c6;
@@ -7,58 +7,58 @@
 <div class="app-bar block-shadow">
     <ul class="app-bar-menu small-dropdown">
         <li>
-            <a href="plan.asp?sem=0" class="dropdown-toggle">Учебный план</a>
+            <a href="plan.asp?sem=0" class="dropdown-toggle">РЈС‡РµР±РЅС‹Р№ РїР»Р°РЅ</a>
             <ul class="d-menu" data-role="dropdown">
-				<li><a href="plan.asp?sem=1">I семестр</a></li>
-                <li><a href="plan.asp?sem=2">II семестр</a></li>
-                <li><a href="#" class="dropdown-toggle bg-green fg-white bg-hover-darkGreen">Редактировать</a>
+				<li><a href="plan.asp?sem=1">I СЃРµРјРµСЃС‚СЂ</a></li>
+                <li><a href="plan.asp?sem=2">II СЃРµРјРµСЃС‚СЂ</a></li>
+                <li><a href="#" class="dropdown-toggle bg-green fg-white bg-hover-darkGreen">Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ</a>
                     <ul class="d-menu" data-role="dropdown">
-                        <li><a href="#">Группы</a></li>
-                        <li><a href="#">Специальности</a></li>
-                        <li><a href="#">Пользователи</a></li>
+                        <li><a href="#">Р“СЂСѓРїРїС‹</a></li>
+                        <li><a href="#">РЎРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё</a></li>
+                        <li><a href="#">РџРѕР»СЊР·РѕРІР°С‚РµР»Рё</a></li>
                     </ul>
                 </li>
-				<li><a href="nakopl.asp">Накопляемость</a></li>
-				<li><a href="#">Страница 1.6</a></li>
-				<li><a href="#">Страница 1.7</a></li>
+				<li><a href="nakopl.asp">РќР°РєРѕРїР»СЏРµРјРѕСЃС‚СЊ</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 1.6</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 1.7</a></li>
             </ul>
         </li>
         <li>
-            <a class="dropdown-toggle">Раздел 2</a>
+            <a class="dropdown-toggle">Р Р°Р·РґРµР» 2</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a href="#">Страница 2</a></li>
-				<li><a href="#">Страница 2.1</a></li>
-                <li><a href="#">Страница 2.2</a></li>
-				<li><a href="#">Страница 2.3</a></li>
-				<li><a href="#">Страница 2.4</a></li>
-				<li><a href="#">Страница 2.5</a></li>
+                <li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2.1</a></li>
+                <li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2.2</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2.3</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2.4</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 2.5</a></li>
             </ul>
         </li>
 		<li>
-            <a class="dropdown-toggle">Раздел 3</a>
+            <a class="dropdown-toggle">Р Р°Р·РґРµР» 3</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a href="#">Страница 3</a></li>
-				<li><a href="#">Страница 3.1</a></li>
-                <li><a href="#">Страница 3.2</a></li>
-				<li><a href="#">Страница 3.3</a></li>
-				<li><a href="#">Страница 3.4</a></li>
-				<li><a href="#">Страница 3.5</a></li>
+                <li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3.1</a></li>
+                <li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3.2</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3.3</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3.4</a></li>
+				<li><a href="#">РЎС‚СЂР°РЅРёС†Р° 3.5</a></li>
             </ul>
         </li>
 		<li>
-            <a class="dropdown-toggle">Статистика</a>
+            <a class="dropdown-toggle">РЎС‚Р°С‚РёСЃС‚РёРєР°</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a href="#">Ошибки</a></li>
-				<li><a href="#">Занятия</a></li>
-                <li><a href="#">Оценки</a></li>
-				<li><a href="#" class="dropdown-toggle bg-green fg-white bg-hover-darkGreen">Ввод данных</a>
+                <li><a href="#">РћС€РёР±РєРё</a></li>
+				<li><a href="#">Р—Р°РЅСЏС‚РёСЏ</a></li>
+                <li><a href="#">РћС†РµРЅРєРё</a></li>
+				<li><a href="#" class="dropdown-toggle bg-green fg-white bg-hover-darkGreen">Р’РІРѕРґ РґР°РЅРЅС‹С…</a>
                     <ul class="d-menu" data-role="dropdown">
-                        <li><a href="#">Занятия</a></li>
-                        <li><a href="#">Оценки</a></li>
+                        <li><a href="#">Р—Р°РЅСЏС‚РёСЏ</a></li>
+                        <li><a href="#">РћС†РµРЅРєРё</a></li>
                     </ul>
                 </li>
-				<li><a href="rate_update.asp?confirm=1">Обновление рейтинга</a></li>
-				<li><a href="stud_update.asp?confirm=1">Перевод курсов</a></li>
+				<li><a href="rate_update.asp?confirm=1">РћР±РЅРѕРІР»РµРЅРёРµ СЂРµР№С‚РёРЅРіР°</a></li>
+				<li><a href="stud_update.asp?confirm=1">РџРµСЂРµРІРѕРґ РєСѓСЂСЃРѕРІ</a></li>
             </ul>
         </li>
     </ul>

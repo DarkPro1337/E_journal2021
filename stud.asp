@@ -1,7 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+п»ї<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <% 
 '---------------------------------------------------
-'Защита от SQL-инъекции 
+'Р—Р°С‰РёС‚Р° РѕС‚ SQL-РёРЅСЉРµРєС†РёРё 
 '---------------------------------------------------
 all= request.QueryString
 for i=1 to len(all)
@@ -89,7 +89,7 @@ RS6.Open sql6, Conn, 3, 3
 		<link rel="stylesheet" href="css/button.css">
 		<script src="js/jquery-3.1.0.min.js"></script>
 		<script src="js/metro.min.js"></script>
-		<title>ИС "Электронный журнал". Данные о студенте <%=rs1.Fields(0)%></title>
+		<title>РРЎ "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р¶СѓСЂРЅР°Р»". Р”Р°РЅРЅС‹Рµ Рѕ СЃС‚СѓРґРµРЅС‚Рµ <%=rs1.Fields(0)%></title>
 		<style>
 			title {
 				display: block !important;
@@ -116,7 +116,7 @@ RS6.Open sql6, Conn, 3, 3
 'rs_1.Open strSQL4, Conn, 3, 3
 'rs_2.Open strSQL5, Conn, 3, 3
 
-dl_per=500 'Объявление переменной dl_per (максимальное количество элементов на одной строке)
+dl_per=500 'РћР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅРѕР№ dl_per (РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РЅР° РѕРґРЅРѕР№ СЃС‚СЂРѕРєРµ)
 old_dl=dl_per
 %>
 <!-- #include file="header.asp" -->
@@ -126,7 +126,7 @@ output_rating = false
 output_usp_and_kach = true
 
 '----------------------------------------------------
-'Подключение БД
+'РџРѕРґРєР»СЋС‡РµРЅРёРµ Р‘Р”
 '----------------------------------------------------
 Set Conn = Server.CreateObject("ADODB.Connection") 
 Set rs_perpod = Server.CreateObject("ADODB.Recordset") 
@@ -144,54 +144,54 @@ strSQL_student = "SELECT tbl_student.id_student, tbl_student.student_fio, tbl_st
 rs_student.Open strSQL_student, Conn, adOpenStatic
 dim student_inf()
 ReDim student_inf(11)
-student_inf(0) = rs_student.fields(0) 'id студента
+student_inf(0) = rs_student.fields(0) 'id СЃС‚СѓРґРµРЅС‚Р°
 for i_sym = 1 to len(rs_student.fields(1))
 	if mid(rs_student.fields(1), i_sym, 1) = " " then
 		if not i_sym = 1 then
-			student_inf(1) = mid(rs_student.fields(1), 1, i_sym - 1) 'фамилия студента
+			student_inf(1) = mid(rs_student.fields(1), 1, i_sym - 1) 'С„Р°РјРёР»РёСЏ СЃС‚СѓРґРµРЅС‚Р°
 			exit for
 		end if
 	end if
 next
-student_inf(2) = rs_student.fields(2) 'имя студента
-student_inf(3) = rs_student.fields(3) 'отчество студента
-student_inf(4) = rs_student.fields(4) 'группа студента
-student_inf(5) = rs_student.fields(5) 'id специальности студента
-student_inf(6) = rs_student.fields(6) 'специальность студента
-student_inf(7) = 0 'Место в рейтинге учащегося среди группы
-student_inf(8) = 0 'Место в рейтинге учащегося среди специальности
-student_inf(9) = 0 'Место в рейтинге учащегося среди всех учащихся
-student_inf(10) = 0 'Успеваемость учащегося
-student_inf(11) = 0 'Качество успеваемости учащегося
+student_inf(2) = rs_student.fields(2) 'РёРјСЏ СЃС‚СѓРґРµРЅС‚Р°
+student_inf(3) = rs_student.fields(3) 'РѕС‚С‡РµСЃС‚РІРѕ СЃС‚СѓРґРµРЅС‚Р°
+student_inf(4) = rs_student.fields(4) 'РіСЂСѓРїРїР° СЃС‚СѓРґРµРЅС‚Р°
+student_inf(5) = rs_student.fields(5) 'id СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё СЃС‚СѓРґРµРЅС‚Р°
+student_inf(6) = rs_student.fields(6) 'СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚СЊ СЃС‚СѓРґРµРЅС‚Р°
+student_inf(7) = 0 'РњРµСЃС‚Рѕ РІ СЂРµР№С‚РёРЅРіРµ СѓС‡Р°С‰РµРіРѕСЃСЏ СЃСЂРµРґРё РіСЂСѓРїРїС‹
+student_inf(8) = 0 'РњРµСЃС‚Рѕ РІ СЂРµР№С‚РёРЅРіРµ СѓС‡Р°С‰РµРіРѕСЃСЏ СЃСЂРµРґРё СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚Рё
+student_inf(9) = 0 'РњРµСЃС‚Рѕ РІ СЂРµР№С‚РёРЅРіРµ СѓС‡Р°С‰РµРіРѕСЃСЏ СЃСЂРµРґРё РІСЃРµС… СѓС‡Р°С‰РёС…СЃСЏ
+student_inf(10) = 0 'РЈСЃРїРµРІР°РµРјРѕСЃС‚СЊ СѓС‡Р°С‰РµРіРѕСЃСЏ
+student_inf(11) = 0 'РљР°С‡РµСЃС‚РІРѕ СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё СѓС‡Р°С‰РµРіРѕСЃСЏ
 rs_student.Close
 select case student_inf(5)
-	case 2 'Эксплуатация транспортного электрооборудования и средств автоматики
+	case 2 'Р­РєСЃРїР»СѓР°С‚Р°С†РёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЌР»РµРєС‚СЂРѕРѕР±РѕСЂСѓРґРѕРІР°РЅРёСЏ Рё СЃСЂРµРґСЃС‚РІ Р°РІС‚РѕРјР°С‚РёРєРё
 		student_status = "cadet"
-		student_string = "Курсант"
-	case 3 'Эксплуатация внутренних водных путей
+		student_string = "РљСѓСЂСЃР°РЅС‚"
+	case 3 'Р­РєСЃРїР»СѓР°С‚Р°С†РёСЏ РІРЅСѓС‚СЂРµРЅРЅРёС… РІРѕРґРЅС‹С… РїСѓС‚РµР№
 		student_status = "cadet"
-		student_string = "Курсант"
-	case 4 'Судовождение
+		student_string = "РљСѓСЂСЃР°РЅС‚"
+	case 4 'РЎСѓРґРѕРІРѕР¶РґРµРЅРёРµ
 		student_status = "cadet"
-		student_string = "Курсант"
-	case 5 'Экономика и бухгалтерский учет
+		student_string = "РљСѓСЂСЃР°РЅС‚"
+	case 5 'Р­РєРѕРЅРѕРјРёРєР° Рё Р±СѓС…РіР°Р»С‚РµСЂСЃРєРёР№ СѓС‡РµС‚
 		student_status = "student"
-		student_string = "Студент"
-	case 8 'Техническое обслуживание и ремонт автомобильного транспорта
+		student_string = "РЎС‚СѓРґРµРЅС‚"
+	case 8 'РўРµС…РЅРёС‡РµСЃРєРѕРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ Рё СЂРµРјРѕРЅС‚ Р°РІС‚РѕРјРѕР±РёР»СЊРЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°
 		student_status = "student"
-		student_string = "Студент"
-	case 10 'Информационные системы
+		student_string = "РЎС‚СѓРґРµРЅС‚"
+	case 10 'РРЅС„РѕСЂРјР°С†РёРѕРЅРЅС‹Рµ СЃРёСЃС‚РµРјС‹
 		student_status = "student"
-		student_string = "Студент"
-	case 11 'Судовождение (программа углубленной подготовки)
+		student_string = "РЎС‚СѓРґРµРЅС‚"
+	case 11 'РЎСѓРґРѕРІРѕР¶РґРµРЅРёРµ (РїСЂРѕРіСЂР°РјРјР° СѓРіР»СѓР±Р»РµРЅРЅРѕР№ РїРѕРґРіРѕС‚РѕРІРєРё)
 		student_status = "cadet"
-		student_string = "Курсант"
+		student_string = "РљСѓСЂСЃР°РЅС‚"
 end select
 %>
 <h2 style="text-align:center;"><%response.Write(student_string & " " &  rs1.Fields(0)& " ") 
-response.Write ("группа "&session("gr"))%></h2>
+response.Write ("РіСЂСѓРїРїР° "&session("gr"))%></h2>
 <%
-'Подсчёт места в рейтинге
+'РџРѕРґСЃС‡С‘С‚ РјРµСЃС‚Р° РІ СЂРµР№С‚РёРЅРіРµ
 if output_rating = true then
 dim rating(), rating_gr()
 for i_rating = 1 to 3
@@ -213,11 +213,11 @@ for i_rating = 1 to 3
 	rs_rating_dop.close
 	redim rating (n_stud, 7), rating_gr (n_gr,9)
 	for i = 1 to n_stud
-		rating(i,6) = rs_rating_q.Fields(0)' id студента
-		rating(i,1) = rs_rating_q.Fields(1)' ФИО студента
-		rating(i,7) = rs_rating_q.Fields(4)' Студ.номер
-		rating(i,2) = rs_rating_q.Fields(2)' Группа
-		rating(i,3) = rs_rating_q.Fields(3)' Рейтинг за прошлый год
+		rating(i,6) = rs_rating_q.Fields(0)' id СЃС‚СѓРґРµРЅС‚Р°
+		rating(i,1) = rs_rating_q.Fields(1)' Р¤РРћ СЃС‚СѓРґРµРЅС‚Р°
+		rating(i,7) = rs_rating_q.Fields(4)' РЎС‚СѓРґ.РЅРѕРјРµСЂ
+		rating(i,2) = rs_rating_q.Fields(2)' Р“СЂСѓРїРїР°
+		rating(i,3) = rs_rating_q.Fields(3)' Р РµР№С‚РёРЅРі Р·Р° РїСЂРѕС€Р»С‹Р№ РіРѕРґ
 		rating(i,4) = 0
 		rating(i,5) = 0
 		rs_rating_q.MoveNext
@@ -228,7 +228,7 @@ for i_rating = 1 to 3
 	for i=1 to n_pos
 		stud_id = rs_rating_q.Fields(3)
 		for j=1 to n_stud
-			if  rating (j,6)= stud_id then rating(j,4) = rs_rating_q.Fields(2) 'Рейтинг посещаемости
+			if  rating (j,6)= stud_id then rating(j,4) = rs_rating_q.Fields(2) 'Р РµР№С‚РёРЅРі РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
 		next
 		rs_rating_q.MoveNext
 	next
@@ -238,13 +238,13 @@ for i_rating = 1 to 3
 	for i=1 to n_usp
 		stud_id = rs_rating_q.Fields(5)
 		for j=1 to n_stud
-			if  rating (j,6)= stud_id then rating(j,5) = rs_rating_q.Fields(4) 'Рейтинг успеваемости
+			if  rating (j,6)= stud_id then rating(j,5) = rs_rating_q.Fields(4) 'Р РµР№С‚РёРЅРі СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё
 		next
 		rs_rating_q.MoveNext
 	next
 	rs_rating_q.close
 	'-------------------------
-	'Сортировка
+	'РЎРѕСЂС‚РёСЂРѕРІРєР°
 	'-------------------------
 	for k=1 to n_stud
 		for i=1 to n_stud - 1
@@ -276,7 +276,7 @@ for i_rating = 1 to 3
 next
 end if
 
-'Создание массива с оценками и подсчёт качества с успеваемостью
+'РЎРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° СЃ РѕС†РµРЅРєР°РјРё Рё РїРѕРґСЃС‡С‘С‚ РєР°С‡РµСЃС‚РІР° СЃ СѓСЃРїРµРІР°РµРјРѕСЃС‚СЊСЋ
 Set rs_disc = Server.CreateObject("ADODB.RecordSet")
 Set rs_count_disc = Server.CreateObject("ADODB.RecordSet")
 Set rs_ocen = Server.CreateObject("ADODB.RecordSet")
@@ -349,58 +349,58 @@ if (current_data_first = "" or current_data_second = "") or (not current_semestr
     end if
 	select case current_month_first
 		case 1
-			current_month_first_ru = "января"
+			current_month_first_ru = "СЏРЅРІР°СЂСЏ"
 		case 2
-			current_month_first_ru = "февраля"
+			current_month_first_ru = "С„РµРІСЂР°Р»СЏ"
 		case 3
-			current_month_first_ru = "марта"
+			current_month_first_ru = "РјР°СЂС‚Р°"
 		case 4
-			current_month_first_ru = "апреля"
+			current_month_first_ru = "Р°РїСЂРµР»СЏ"
 		case 5
-			current_month_first_ru = "мая"
+			current_month_first_ru = "РјР°СЏ"
 		case 6
-			current_month_first_ru = "июня"
+			current_month_first_ru = "РёСЋРЅСЏ"
 		case 7
-			current_month_first_ru = "июля"
+			current_month_first_ru = "РёСЋР»СЏ"
 		case 8
-			current_month_first_ru = "августа"
+			current_month_first_ru = "Р°РІРіСѓСЃС‚Р°"
 		case 9
-			current_month_first_ru = "сентября"
+			current_month_first_ru = "СЃРµРЅС‚СЏР±СЂСЏ"
 		case 10
-			current_month_first_ru = "октября"
+			current_month_first_ru = "РѕРєС‚СЏР±СЂСЏ"
 		case 11
-			current_month_first_ru = "ноября"
+			current_month_first_ru = "РЅРѕСЏР±СЂСЏ"
 		case 12
-			current_month_first_ru = "декабря"
+			current_month_first_ru = "РґРµРєР°Р±СЂСЏ"
 	end select
 	select case current_month_second
 		case 1
-			current_month_second_ru = "января"
+			current_month_second_ru = "СЏРЅРІР°СЂСЏ"
 		case 2
-			current_month_second_ru = "февраля"
+			current_month_second_ru = "С„РµРІСЂР°Р»СЏ"
 		case 3
-			current_month_second_ru = "марта"
+			current_month_second_ru = "РјР°СЂС‚Р°"
 		case 4
-			current_month_second_ru = "апреля"
+			current_month_second_ru = "Р°РїСЂРµР»СЏ"
 		case 5
-			current_month_second_ru = "мая"
+			current_month_second_ru = "РјР°СЏ"
 		case 6
-			current_month_second_ru = "июня"
+			current_month_second_ru = "РёСЋРЅСЏ"
 		case 7
-			current_month_second_ru = "июля"
+			current_month_second_ru = "РёСЋР»СЏ"
 		case 8
-			current_month_second_ru = "августа"
+			current_month_second_ru = "Р°РІРіСѓСЃС‚Р°"
 		case 9
-			current_month_second_ru = "сентября"
+			current_month_second_ru = "СЃРµРЅС‚СЏР±СЂСЏ"
 		case 10
-			current_month_second_ru = "октября"
+			current_month_second_ru = "РѕРєС‚СЏР±СЂСЏ"
 		case 11
-			current_month_second_ru = "ноября"
+			current_month_second_ru = "РЅРѕСЏР±СЂСЏ"
 		case 12
-			current_month_second_ru = "декабря"
+			current_month_second_ru = "РґРµРєР°Р±СЂСЏ"
 	end select
-	current_data_first_ru = current_day_first & " " & current_month_first_ru & " " & current_year_first & " г."
-	current_data_second_ru = current_day_second & " " & current_month_second_ru & " " & current_year_second & " г."
+	current_data_first_ru = current_day_first & " " & current_month_first_ru & " " & current_year_first & " Рі."
+	current_data_second_ru = current_day_second & " " & current_month_second_ru & " " & current_year_second & " Рі."
 else
 	onpost = true
 	current_data_first_ru = current_data_first
@@ -411,29 +411,29 @@ else
 				if mid(current_data_first, j_sym, 1) = " " then
 					current_day_first = mid(current_data_first, 1, i_sym - 1)
 					select case mid(current_data_first, i_sym + 1, j_sym - len(current_day_first) - 2)
-						case "января"
+						case "СЏРЅРІР°СЂСЏ"
 							current_month_first = 1
-						case "февраля"
+						case "С„РµРІСЂР°Р»СЏ"
 							current_month_first = 2
-						case "марта"
+						case "РјР°СЂС‚Р°"
 							current_month_first = 3
-						case "апреля"
+						case "Р°РїСЂРµР»СЏ"
 							current_month_first = 4
-						case "мая"
+						case "РјР°СЏ"
 							current_month_first = 5
-						case "июня"
+						case "РёСЋРЅСЏ"
 							current_month_first = 6
-						case "июля"
+						case "РёСЋР»СЏ"
 							current_month_first = 7
-						case "августа"
+						case "Р°РІРіСѓСЃС‚Р°"
 							current_month_first = 8
-						case "сентября"
+						case "СЃРµРЅС‚СЏР±СЂСЏ"
 							current_month_first = 9
-						case "октября"
+						case "РѕРєС‚СЏР±СЂСЏ"
 							current_month_first = 10
-						case "ноября"
+						case "РЅРѕСЏР±СЂСЏ"
 							current_month_first = 11
-						case "декабря"
+						case "РґРµРєР°Р±СЂСЏ"
 							current_month_first = 12
 					end select
 					current_year_first = mid(current_data_first, j_sym + 1, 4)
@@ -450,29 +450,29 @@ else
 				if mid(current_data_second, j_sym, 1) = " " then
 					current_day_second = mid(current_data_second, 1, i_sym - 1)
 					select case mid(current_data_second, i_sym + 1, j_sym - len(current_day_second) - 2)
-						case "января"
+						case "СЏРЅРІР°СЂСЏ"
 							current_month_second = 1
-						case "февраля"
+						case "С„РµРІСЂР°Р»СЏ"
 							current_month_second = 2
-						case "марта"
+						case "РјР°СЂС‚Р°"
 							current_month_second = 3
-						case "апреля"
+						case "Р°РїСЂРµР»СЏ"
 							current_month_second = 4
-						case "мая"
+						case "РјР°СЏ"
 							current_month_second = 5
-						case "июня"
+						case "РёСЋРЅСЏ"
 							current_month_second = 6
-						case "июля"
+						case "РёСЋР»СЏ"
 							current_month_second = 7
-						case "августа"
+						case "Р°РІРіСѓСЃС‚Р°"
 							current_month_second = 8
-						case "сентября"
+						case "СЃРµРЅС‚СЏР±СЂСЏ"
 							current_month_second = 9
-						case "октября"
+						case "РѕРєС‚СЏР±СЂСЏ"
 							current_month_second = 10
-						case "ноября"
+						case "РЅРѕСЏР±СЂСЏ"
 							current_month_second = 11
-						case "декабря"
+						case "РґРµРєР°Р±СЂСЏ"
 							current_month_second = 12
 					end select
 					current_year_second = mid(current_data_second, j_sym + 1, 4)
@@ -484,10 +484,10 @@ else
 		end if
 	next
 end if
-'Рекордсет с дисциплинами по группе и по семестру
+'Р РµРєРѕСЂРґСЃРµС‚ СЃ РґРёСЃС†РёРїР»РёРЅР°РјРё РїРѕ РіСЂСѓРїРїРµ Рё РїРѕ СЃРµРјРµСЃС‚СЂСѓ
 sql_disc="SELECT tbl_disc.disc_name, tbl_group.group_name, tbl_plan.Semestr, tbl_disc.disc_ab, tbl_plan.kol_chas, tbl_plan.id_plan, tbl_user.user_fio, tbl_plan.control_form FROM tbl_user INNER JOIN (tbl_group INNER JOIN (tbl_disc INNER JOIN tbl_plan ON tbl_disc.ID_disc = tbl_plan.disc_name) ON tbl_group.id_group = tbl_plan.gr_name) ON tbl_user.id_user = tbl_plan.Prepod_name WHERE (((tbl_group.group_name)='" & student_inf(4) & "') AND ((tbl_plan.Semestr)='" & current_semestr & "')) ORDER BY tbl_disc.disc_name"
 '---------------------------------------------------------------------------------------------------------------------------
-'Заполнение массива информацией о дисциплинах (id, Название, Аббревиатура, Преподаватель, кол-во часов, выдано часов, успеваемость, качество, количество обязательных работ)
+'Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґРёСЃС†РёРїР»РёРЅР°С… (id, РќР°Р·РІР°РЅРёРµ, РђР±Р±СЂРµРІРёР°С‚СѓСЂР°, РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ, РєРѕР»-РІРѕ С‡Р°СЃРѕРІ, РІС‹РґР°РЅРѕ С‡Р°СЃРѕРІ, СѓСЃРїРµРІР°РµРјРѕСЃС‚СЊ, РєР°С‡РµСЃС‚РІРѕ, РєРѕР»РёС‡РµСЃС‚РІРѕ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹С… СЂР°Р±РѕС‚)
 '---------------------------------------------------------------------------------------------------------------------------
 rs_disc.open sql_disc, conn, 3
 dim disc()
@@ -495,19 +495,19 @@ dim disc()
 redim disc(n_disc,19)
 for i=1 to n_disc
 	disc(i,1)=rs_disc.Fields(5)'id plan
-	disc(i,2)=rs_disc.Fields(0)'дисциплина
-	disc(i,3)=rs_disc.Fields(3)'сок. дисциплина
-	disc(i,4)=rs_disc.Fields(6)'преподаватель
-	disc(i,5)=rs_disc.Fields(4)'кол-во часов
-	disc(i,15)=rs_disc.Fields(7)'форма контроля
-	disc(i,10)= "" 'средний балл учащегося
-	disc(i,11)= "" 'итоговая оценка учащегося
-	disc(i,12)= 0 'количетство пропусков по дисциплине
-	disc(i,13)= 0 'количетство уважительных пропусков по дисциплине
-	disc(i,14)= 0 'количетство неужавительных пропусков по дисциплине
-	disc(i,17)= 0 'Качество знаний учащегося
-	disc(i,18)= 0 'Качество знаний группы
-	disc(i,19)= 0 'Успеваемость группы
+	disc(i,2)=rs_disc.Fields(0)'РґРёСЃС†РёРїР»РёРЅР°
+	disc(i,3)=rs_disc.Fields(3)'СЃРѕРє. РґРёСЃС†РёРїР»РёРЅР°
+	disc(i,4)=rs_disc.Fields(6)'РїСЂРµРїРѕРґР°РІР°С‚РµР»СЊ
+	disc(i,5)=rs_disc.Fields(4)'РєРѕР»-РІРѕ С‡Р°СЃРѕРІ
+	disc(i,15)=rs_disc.Fields(7)'С„РѕСЂРјР° РєРѕРЅС‚СЂРѕР»СЏ
+	disc(i,10)= "" 'СЃСЂРµРґРЅРёР№ Р±Р°Р»Р» СѓС‡Р°С‰РµРіРѕСЃСЏ
+	disc(i,11)= "" 'РёС‚РѕРіРѕРІР°СЏ РѕС†РµРЅРєР° СѓС‡Р°С‰РµРіРѕСЃСЏ
+	disc(i,12)= 0 'РєРѕР»РёС‡РµС‚СЃС‚РІРѕ РїСЂРѕРїСѓСЃРєРѕРІ РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
+	disc(i,13)= 0 'РєРѕР»РёС‡РµС‚СЃС‚РІРѕ СѓРІР°Р¶РёС‚РµР»СЊРЅС‹С… РїСЂРѕРїСѓСЃРєРѕРІ РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
+	disc(i,14)= 0 'РєРѕР»РёС‡РµС‚СЃС‚РІРѕ РЅРµСѓР¶Р°РІРёС‚РµР»СЊРЅС‹С… РїСЂРѕРїСѓСЃРєРѕРІ РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
+	disc(i,17)= 0 'РљР°С‡РµСЃС‚РІРѕ Р·РЅР°РЅРёР№ СѓС‡Р°С‰РµРіРѕСЃСЏ
+	disc(i,18)= 0 'РљР°С‡РµСЃС‚РІРѕ Р·РЅР°РЅРёР№ РіСЂСѓРїРїС‹
+	disc(i,19)= 0 'РЈСЃРїРµРІР°РµРјРѕСЃС‚СЊ РіСЂСѓРїРїС‹
 	sql_count_disc="SELECT Count([tbl_zan]![disc_name])*2 AS CountDisc FROM tbl_plan INNER JOIN tbl_zan ON tbl_plan.ID_plan = tbl_zan.disc_name GROUP BY tbl_plan.ID_plan HAVING (((tbl_plan.ID_plan)="& disc(i,1) & "))"
 	rs_count_disc.open sql_count_disc, conn, 3
 	if rs_count_disc.EOF<>true and rs_count_disc.BOF<>true then disc(i,6)=rs_count_disc.Fields(0) else disc(i,6)=0
@@ -520,7 +520,7 @@ for i=1 to n_disc
 next
 rs_disc.Close
 '---------------------------------------------------------------------------------------------------------------------------
-'Заполнение массива информацией об оценках
+'Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕС†РµРЅРєР°С…
 '---------------------------------------------------------------------------------------------------------------------------
 dim avg_ocen()
 redim avg_ocen(n_disc,3)
@@ -531,7 +531,7 @@ count_5 = 0
 for j=1 to n_disc
 	flag_itog = 0
 	'---------------------------
-	'Определение - есть ли итоговая оценка по дисциплине
+	'РћРїСЂРµРґРµР»РµРЅРёРµ - РµСЃС‚СЊ Р»Рё РёС‚РѕРіРѕРІР°СЏ РѕС†РµРЅРєР° РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
 	'---------------------------
 	strSQL_itog = "SELECT tbl_itog.id_itog, tbl_itog.itog_disc, tbl_itog.itog_stud, tbl_itog.itog_oc, tbl_itog.Author FROM tbl_itog WHERE (((tbl_itog.itog_disc)="&disc(j,1)&") AND ((tbl_itog.itog_stud)="& student_inf(0) &"))"
 	rs_itog.Open strSQL_itog, conn, 3
@@ -555,9 +555,9 @@ for j=1 to n_disc
 			rs_kontr.Close  
 		end if  
 		if flag=1 then
-			if avg_ocen(j,1) = "" then avg_ocen (j,1) = "н/а"
-			if flag_itog = 1 then avg_ocen(j,3) = avg_ocen(j,3) & " (н/а)" else avg_ocen(j,3) = "н/а"
-			avg_ocen(j,2) = "Не выполнены обязательные практические или контрольные работы"
+			if avg_ocen(j,1) = "" then avg_ocen (j,1) = "РЅ/Р°"
+			if flag_itog = 1 then avg_ocen(j,3) = avg_ocen(j,3) & " (РЅ/Р°)" else avg_ocen(j,3) = "РЅ/Р°"
+			avg_ocen(j,2) = "РќРµ РІС‹РїРѕР»РЅРµРЅС‹ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїСЂР°РєС‚РёС‡РµСЃРєРёРµ РёР»Рё РєРѕРЅС‚СЂРѕР»СЊРЅС‹Рµ СЂР°Р±РѕС‚С‹"
 		else
 			if avg_ocen(j,3) = "" then avg_ocen(j,3) = round(rs_ocen.Fields (2),1)
 			if avg_ocen(j,1) = "" then avg_ocen (j,1) = round(rs_ocen.Fields (2),1)
@@ -565,14 +565,14 @@ for j=1 to n_disc
 		rs_ocen.close
 		rs_prop.close
 		rs_itog.Close
-		'---вывод зачета
+		'---РІС‹РІРѕРґ Р·Р°С‡РµС‚Р°
 		if avg_ocen(j,1) = "7" then
-			avg_ocen(j,3)= "зач"
+			avg_ocen(j,3)= "Р·Р°С‡"
 		else
 			if avg_ocen(j,3)="" then 
 				avg_ocen(j,3)= "&nbsp;"
 			else
-				if avg_ocen(j,1) = "н/а" then
+				if avg_ocen(j,1) = "РЅ/Р°" then
 					count_2=count_2 + 1
 				else
 					if avg_ocen(j,1)<=2.5 then count_2 = count_2 + 1
@@ -583,13 +583,13 @@ for j=1 to n_disc
 			end if
 	end if
 next
-student_inf(10) = round((count_3 + count_4 + count_5)/(count_2 + count_3 + count_4 + count_5)*100,0) 'Успеваемость учащегося
-student_inf(11) = round((count_4 + count_5)/(count_2 + count_3 + count_4 + count_5)*100,0) 'Качество успеваемости учащегося
+student_inf(10) = round((count_3 + count_4 + count_5)/(count_2 + count_3 + count_4 + count_5)*100,0) 'РЈСЃРїРµРІР°РµРјРѕСЃС‚СЊ СѓС‡Р°С‰РµРіРѕСЃСЏ
+student_inf(11) = round((count_4 + count_5)/(count_2 + count_3 + count_4 + count_5)*100,0) 'РљР°С‡РµСЃС‚РІРѕ СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё СѓС‡Р°С‰РµРіРѕСЃСЏ
 
-'Расчёт качества и успеваемости учащихся группы
+'Р Р°СЃС‡С‘С‚ РєР°С‡РµСЃС‚РІР° Рё СѓСЃРїРµРІР°РµРјРѕСЃС‚Рё СѓС‡Р°С‰РёС…СЃСЏ РіСЂСѓРїРїС‹
 strSQL_student="SELECT student_fio, tbl_student.id_student, tbl_student.student_number FROM tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name WHERE ((tbl_group.group_name)='" & student_inf(4) &"') ORDER BY student_fio"
 '---------------------------------------------------------------------------------------------------------------------------
-'Заполнение массива фамилиями студентов текущей группы (id, Фамилия И.О., количество 2, 3, 4, 5, Успеваемость, Качество, цвет заливки ячеек в ведомости)
+'Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° С„Р°РјРёР»РёСЏРјРё СЃС‚СѓРґРµРЅС‚РѕРІ С‚РµРєСѓС‰РµР№ РіСЂСѓРїРїС‹ (id, Р¤Р°РјРёР»РёСЏ Р.Рћ., РєРѕР»РёС‡РµСЃС‚РІРѕ 2, 3, 4, 5, РЈСЃРїРµРІР°РµРјРѕСЃС‚СЊ, РљР°С‡РµСЃС‚РІРѕ, С†РІРµС‚ Р·Р°Р»РёРІРєРё СЏС‡РµРµРє РІ РІРµРґРѕРјРѕСЃС‚Рё)
 '---------------------------------------------------------------------------------------------------------------------------
 rs_student.open strSQL_student, conn, 3
 dim student()
@@ -613,7 +613,7 @@ for i=1 to n_stud
 	count_5 = 0
 	for j=1 to n_disc
 		'---------------------------
-		'Определение - есть ли итоговая оценка по дисциплине
+		'РћРїСЂРµРґРµР»РµРЅРёРµ - РµСЃС‚СЊ Р»Рё РёС‚РѕРіРѕРІР°СЏ РѕС†РµРЅРєР° РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
 		'---------------------------
 		strSQL_itog = "SELECT tbl_itog.id_itog, tbl_itog.itog_disc, tbl_itog.itog_stud, tbl_itog.itog_oc, tbl_itog.Author FROM tbl_itog WHERE (((tbl_itog.itog_disc)="&disc(j,1)&") AND ((tbl_itog.itog_stud)="&student(i,1)&"))"
 		rs_itog.Open strSQL_itog, conn, 3
@@ -636,11 +636,11 @@ for i=1 to n_stud
 					rs_kontr.Close  
 				end if  
 				if flag=1 then
-					avg_ocen_group(i,j,1) = "н/а"
+					avg_ocen_group(i,j,1) = "РЅ/Р°"
 				else
 					if rs_ocen.BOF<>true and rs_ocen.EOF <>true then 
 						if sum_prop(i,j)>=disc(j,5)*0.3 then 
-							avg_ocen_group(i,j,1) = "н/а" 
+							avg_ocen_group(i,j,1) = "РЅ/Р°" 
 						else 
 							avg_ocen_group(i,j,1)=round(rs_ocen.Fields (2),1)
 						end if
@@ -653,7 +653,7 @@ for i=1 to n_stud
 		if avg_ocen_group(i,j,1)="" then 
 			avg_ocen_group(i,j,1)= "&nbsp;"
 		else
-			if avg_ocen_group(i,j,1) = "н/а" then
+			if avg_ocen_group(i,j,1) = "РЅ/Р°" then
 				count_2=count_2 + 1
 			else
 				if avg_ocen_group(i,j,1)<=2.5 then count_2 = count_2 + 1
@@ -673,10 +673,10 @@ for j=1 to n_disc
 	d_count_5=0
 	for i=1 to n_stud
 		if avg_ocen_group(i,j,1)<>"&nbsp;" then 
-			if avg_ocen_group(i,j,1) = "н/а" then
+			if avg_ocen_group(i,j,1) = "РЅ/Р°" then
 				d_count_2 = d_count_2 + 1
 			else
-				if avg_ocen_group(i,j,1)<=2.5  or avg_ocen_group(i,j,1)="н/а" then d_count_2 = d_count_2 + 1
+				if avg_ocen_group(i,j,1)<=2.5  or avg_ocen_group(i,j,1)="РЅ/Р°" then d_count_2 = d_count_2 + 1
 				if avg_ocen_group(i,j,1) > 2.5 and avg_ocen_group(i,j,1)<=3.49 then d_count_3 = d_count_3 + 1
 				if avg_ocen_group(i,j,1)>=3.5 and avg_ocen_group(i,j,1)<=4.49 then d_count_4 = d_count_4 + 1
 				if avg_ocen_group(i,j,1)>=4.5 then d_count_5 = d_count_5 + 1
@@ -687,7 +687,7 @@ for j=1 to n_disc
 	disc(j,18) = round(((d_count_4 + d_count_5)/(d_count_2 + d_count_3 + d_count_4 + d_count_5))*100,0)
 next
 
-'Формирование массива со всеми оценками
+'Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР° СЃРѕ РІСЃРµРјРё РѕС†РµРЅРєР°РјРё
 Set rs_avg = Server.CreateObject("ADODB.Recordset")
 Set rs_sob = Server.CreateObject("ADODB.Recordset")
 sql_sob = "SELECT tbl_journal.sobytie, tbl_disc.disc_name, tbl_journal.nb1, tbl_journal.nb2, tbl_journal.nb_type, tbl_journal.nb_comment, tbl_zan.date, tbl_zan.prim_student, tbl_zan.zan_type, tbl_journal.sobytie_old FROM ((tbl_disc INNER JOIN tbl_plan ON tbl_disc.ID_disc = tbl_plan.disc_name) INNER JOIN tbl_zan ON tbl_plan.ID_plan = tbl_zan.disc_name) INNER JOIN (tbl_student INNER JOIN tbl_journal ON tbl_student.id_student = tbl_journal.student_name) ON tbl_zan.id_zan = tbl_journal.zan WHERE (((tbl_student.id_student)="& student_inf(0) &") AND ((tbl_plan.Semestr)='" & current_semestr & "') AND ((tbl_zan.date) Between #" & current_data_first & "# AND #" & current_data_second & "#)) ORDER BY tbl_journal.edit_date ASC"
@@ -699,14 +699,14 @@ for i_disc = 1 to n_disc
 	strSQL_itog = "SELECT tbl_itog.id_itog, tbl_itog.itog_disc, tbl_itog.itog_stud, tbl_itog.itog_oc, tbl_itog.Author FROM tbl_itog WHERE (((tbl_itog.itog_disc)="& disc(i_disc,1) &") AND ((tbl_itog.itog_stud)="& student_inf(0) &"))"
 	rs_itog.Open strSQL_itog, conn, 3
 	if rs_itog.eof <> true and rs_itog.BOF <> true then
-		if disc(i_disc,9) = "Зачет" then
+		if disc(i_disc,9) = "Р—Р°С‡РµС‚" then
 			if rs_itog.Fields(3) >= 3 then
-				disc(i_disc,11) = "зач"
+				disc(i_disc,11) = "Р·Р°С‡"
 			else
-				disc(i_disc,11) = "н/з"
+				disc(i_disc,11) = "РЅ/Р·"
 			end if
 		else
-			if rs_itog.Fields(3) = 1 then disc(i_disc,11) = "н/а" else disc(i_disc,11) = rs_itog.Fields(3)
+			if rs_itog.Fields(3) = 1 then disc(i_disc,11) = "РЅ/Р°" else disc(i_disc,11) = rs_itog.Fields(3)
 		end if
 	end if
 	rs_itog.Close
@@ -715,7 +715,7 @@ for i_disc = 1 to n_disc
 	rs_avg.movefirst
 
 	'if rs_avg.recordcount > 0 then
-		disc(i_disc,10) = round(rs_avg.Fields(0),2) 'Средний балл
+		disc(i_disc,10) = round(rs_avg.Fields(0),2) 'РЎСЂРµРґРЅРёР№ Р±Р°Р»Р»
 		rs_avg.close
 		k_nb = 0
 		k_nb_uvag = 0
@@ -727,10 +727,10 @@ for i_disc = 1 to n_disc
 		for i_sob=1 to rs_sob.recordcount
 			if rs_sob.Fields(1) = disc(i_disc, 2) then 
 				if rs_sob.Fields(3)=true then  
-					sob(i_disc, i_sob, 6) = "2нб"
-					sob(i_disc, i_sob, 1) = rs_sob.Fields(4) 'Тип нб
-					sob(i_disc, i_sob, 2) = rs_sob.Fields(5) 'Описание нб
-					sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Дата занятия
+					sob(i_disc, i_sob, 6) = "2РЅР±"
+					sob(i_disc, i_sob, 1) = rs_sob.Fields(4) 'РўРёРї РЅР±
+					sob(i_disc, i_sob, 2) = rs_sob.Fields(5) 'РћРїРёСЃР°РЅРёРµ РЅР±
+					sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
 					k_nb = k_nb + 2
 					select case sob(i_disc, i_sob, 1)
 						case 1, 2, 3, 4
@@ -746,10 +746,10 @@ for i_disc = 1 to n_disc
 						if sob(i_disc, i_sob, 0) >= 4.50 and sob(i_disc, i_sob, 0) < 6 then count_5 = count_5 + 1
 					end if
 				elseif  rs_sob.Fields(2)=true then
-					sob(i_disc, i_sob, 6) = "1нб"
-					sob(i_disc, i_sob, 1) = rs_sob.Fields(4) 'Тип нб
-					sob(i_disc, i_sob, 2) = rs_sob.Fields(5) 'Описание нб
-					sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Дата занятия
+					sob(i_disc, i_sob, 6) = "1РЅР±"
+					sob(i_disc, i_sob, 1) = rs_sob.Fields(4) 'РўРёРї РЅР±
+					sob(i_disc, i_sob, 2) = rs_sob.Fields(5) 'РћРїРёСЃР°РЅРёРµ РЅР±
+					sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
 					k_nb = k_nb + 1
 					select case sob(i_disc, i_sob, 1)
 						case 1, 2, 3, 4
@@ -766,13 +766,13 @@ for i_disc = 1 to n_disc
 					end if
 				else
 					if rs_sob.Fields(0) = 7 then
-						sob(i_disc, i_sob, 0) = "зач"
-						sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Дата занятия
+						sob(i_disc, i_sob, 0) = "Р·Р°С‡"
+						sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
 					else
-						sob(i_disc, i_sob, 0) = round(rs_sob.Fields(0),2) 'Оценка
-						sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Дата занятия
-						sob(i_disc, i_sob, 4) = rs_sob.Fields(7) 'Описание занятия
-						sob(i_disc, i_sob, 5) = rs_sob.Fields(8) 'Тип занятия
+						sob(i_disc, i_sob, 0) = round(rs_sob.Fields(0),2) 'РћС†РµРЅРєР°
+						sob(i_disc, i_sob, 3) = rs_sob.Fields(6) 'Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
+						sob(i_disc, i_sob, 4) = rs_sob.Fields(7) 'РћРїРёСЃР°РЅРёРµ Р·Р°РЅСЏС‚РёСЏ
+						sob(i_disc, i_sob, 5) = rs_sob.Fields(8) 'РўРёРї Р·Р°РЅСЏС‚РёСЏ
 						if sob(i_disc, i_sob, 0) < 2.50 then count_2 = count_2 + 1
 						if sob(i_disc, i_sob, 0) >= 2.50 and sob(i_disc, i_sob, 0) < 3.50 then count_3 = count_3 + 1
 						if sob(i_disc, i_sob, 0) >= 3.50 and sob(i_disc, i_sob, 0) < 4.50 then count_4 = count_4 + 1
@@ -782,18 +782,18 @@ for i_disc = 1 to n_disc
 			end if
 			rs_sob.movenext
 		next
-		disc(i_disc,12) = k_nb 'Количетсво нб по дисциплине
-		disc(i_disc,13) = k_nb_uvag 'Количетсво уважительных нб по дисциплине
-		disc(i_disc,14) = k_nb_neuvag 'Количетсво неуважительных нб по дисциплине
+		disc(i_disc,12) = k_nb 'РљРѕР»РёС‡РµС‚СЃРІРѕ РЅР± РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
+		disc(i_disc,13) = k_nb_uvag 'РљРѕР»РёС‡РµС‚СЃРІРѕ СѓРІР°Р¶РёС‚РµР»СЊРЅС‹С… РЅР± РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
+		disc(i_disc,14) = k_nb_neuvag 'РљРѕР»РёС‡РµС‚СЃРІРѕ РЅРµСѓРІР°Р¶РёС‚РµР»СЊРЅС‹С… РЅР± РїРѕ РґРёСЃС†РёРїР»РёРЅРµ
 		disc(i_disc,17) = round(((count_4 + count_5)/(count_2 + count_3 + count_4 + count_5))*100,0)
 		rs_sob.movefirst
 	'end if
 next
 
-'Формирование массива с задолженностями
+'Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР° СЃ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЏРјРё
 Set rs_zadol = Server.CreateObject("ADODB.RecordSet")
 '---------------------------------------------------------------------------------------------------------------------------
-'Заполнение массива информацией о задолженностях 
+'Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚СЏС… 
 '---------------------------------------------------------------------------------------------------------------------------
 strSQL_zadol = "SELECT tbl_zan.date, tbl_zan.id_zan, tbl_zan.kontr, tbl_zan.prim, tbl_user.user_fio, tbl_zan.prim_student, tbl_zan.zan_type, tbl_disc.disc_name, tbl_disc.ID_disc FROM tbl_user INNER JOIN ((tbl_group INNER JOIN (tbl_disc INNER JOIN tbl_plan ON tbl_disc.ID_disc = tbl_plan.disc_name) ON tbl_group.id_group = tbl_plan.gr_name) INNER JOIN tbl_zan ON tbl_plan.ID_plan = tbl_zan.disc_name) ON tbl_user.id_user = tbl_plan.Prepod_name WHERE (((tbl_plan.Semestr)='" & current_semestr & "') AND ((tbl_group.group_name)='" & student_inf(4) & "') and ((tbl_zan.zan_type) between 2 and 4) AND ((tbl_zan.date) Between #" & current_data_first & "# AND #" & current_data_second & "#)) ORDER BY tbl_disc.disc_name, tbl_zan.date;" ' and ((tbl_zan.kontr) = true)
 rs_zadol.Open strSQL_zadol, conn, 3
@@ -802,19 +802,19 @@ n_dat = cint(rs_zadol.recordcount)
 redim dat(10, n_dat)
 for i=1 to n_dat
 	dat(1, i) = rs_zadol.Fields (1) 'id_zan
-	dat(2, i) = left(cstr(rs_zadol.Fields (0)),5) 'Дата проведения занятия
-	dat(3, i) = rs_zadol.Fields (2) 'Контрольная работа
-	dat(5, i) = rs_zadol.Fields (3) 'Примечание
-	dat(6, i) = rs_zadol.Fields (4) 'Автор
-	dat(7, i) = rs_zadol.Fields (5) 'Примечание студент
-	dat(8, i) = rs_zadol.Fields (6) 'Тип занятия
-	dat(9, i) = rs_zadol.Fields (7) 'Название занятия
+	dat(2, i) = left(cstr(rs_zadol.Fields (0)),5) 'Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ Р·Р°РЅСЏС‚РёСЏ
+	dat(3, i) = rs_zadol.Fields (2) 'РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р°
+	dat(5, i) = rs_zadol.Fields (3) 'РџСЂРёРјРµС‡Р°РЅРёРµ
+	dat(6, i) = rs_zadol.Fields (4) 'РђРІС‚РѕСЂ
+	dat(7, i) = rs_zadol.Fields (5) 'РџСЂРёРјРµС‡Р°РЅРёРµ СЃС‚СѓРґРµРЅС‚
+	dat(8, i) = rs_zadol.Fields (6) 'РўРёРї Р·Р°РЅСЏС‚РёСЏ
+	dat(9, i) = rs_zadol.Fields (7) 'РќР°Р·РІР°РЅРёРµ Р·Р°РЅСЏС‚РёСЏ
 	dat(10, i) = rs_zadol.Fields (8) 'id
 	rs_zadol.MoveNext
 next
 rs_zadol.Close
 '---------------------------------------------------------------------------------------------------------------------------
-'Заполнение массива информацией об оценках
+'Р—Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР° РёРЅС„РѕСЂРјР°С†РёРµР№ РѕР± РѕС†РµРЅРєР°С…
 '---------------------------------------------------------------------------------------------------------------------------	
 strSQL_ocen = "SELECT tbl_group.group_name, tbl_plan.Semestr, tbl_disc.disc_name, tbl_student.id_student, tbl_journal.sobytie, tbl_zan.id_zan, tbl_plan.ID_plan, tbl_user.user_fio, tbl_journal.edit, tbl_journal.edit_date FROM tbl_user INNER JOIN ((((tbl_group INNER JOIN (tbl_disc INNER JOIN tbl_plan ON tbl_disc.ID_disc = tbl_plan.disc_name) ON tbl_group.id_group = tbl_plan.gr_name) INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name) INNER JOIN tbl_zan ON tbl_plan.ID_plan = tbl_zan.disc_name) INNER JOIN tbl_journal ON (tbl_zan.id_zan = tbl_journal.zan) AND (tbl_student.id_student = tbl_journal.student_name)) ON tbl_user.id_user = tbl_journal.Author WHERE (((tbl_group.group_name)='" & student_inf(4) &"') AND ((tbl_plan.Semestr)='" & current_semestr &"') AND ((tbl_zan.date) Between #" & current_data_first & "# AND #" & current_data_second & "#));"
 rs_ocen.Open strSQL_ocen, conn, 3
@@ -833,70 +833,70 @@ rs_ocen.close
 <table class="table striped hovered cell-hovered border bordered">
 	<thead>
 		<tr>
-			<th class="sortable-column" style="min-width: 380px;">Дисциплина</th>
-			<th class="sortable-column">Оценки</th>
+			<th class="sortable-column" style="min-width: 380px;">Р”РёСЃС†РёРїР»РёРЅР°</th>
+			<th class="sortable-column">РћС†РµРЅРєРё</th>
 		</tr>
 	</thead>
 	<tbody>
 		<%
 		for i_disc = 1 to n_disc
-			sob_vid_name = "Теоретическая работа"
+			sob_vid_name = "РўРµРѕСЂРµС‚РёС‡РµСЃРєР°СЏ СЂР°Р±РѕС‚Р°"
 			response.write("<tr><td class='sortable-column'>" & disc(i_disc, 2) & "</td><td>")
 			for i_sob = 1 to n_sob
 				if not sob(i_disc, i_sob, 0) = "" then
 					if not sob(i_disc, i_sob, 4) = "" then
 						select case sob(i_disc, i_sob, 5)
 							case 1
-								sob_vid_name = "Теоретическая работа"
+								sob_vid_name = "РўРµРѕСЂРµС‚РёС‡РµСЃРєР°СЏ СЂР°Р±РѕС‚Р°"
 							case 2
-								sob_vid_name = "Практическая работа"
+								sob_vid_name = "РџСЂР°РєС‚РёС‡РµСЃРєР°СЏ СЂР°Р±РѕС‚Р°"
 							case 3
-								sob_vid_name = "Тест"
+								sob_vid_name = "РўРµСЃС‚"
 							case 4
-								sob_vid_name = "Лабораторная работа"
+								sob_vid_name = "Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р°"
 							case 5
-								sob_vid_name = "Самостоятельная работа"
+								sob_vid_name = "РЎР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р°"
 						end select
 					end if
-					if sob(i_disc, i_sob, 0) = "1нб" or sob(i_disc, i_sob, 0) = "2нб" then
+					if sob(i_disc, i_sob, 0) = "1РЅР±" or sob(i_disc, i_sob, 0) = "2РЅР±" then
 					elseif sob(i_disc, i_sob, 0) < 2.5 then
-						%><div class='assess two' title='Дата: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Вид работы: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
+						%><div class='assess two' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Р’РёРґ СЂР°Р±РѕС‚С‹: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
 					elseif sob(i_disc, i_sob, 0) >= 2.5 and sob(i_disc, i_sob, 0) < 3.5 then
-						%><div class='assess three' title='Дата: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Вид работы: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
+						%><div class='assess three' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Р’РёРґ СЂР°Р±РѕС‚С‹: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
 					elseif sob(i_disc, i_sob, 0) >= 3.5 and sob(i_disc, i_sob, 0) < 4.5 then
-						%><div class='assess four' title='Дата: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Вид работы: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
+						%><div class='assess four' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Р’РёРґ СЂР°Р±РѕС‚С‹: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
 					elseif sob(i_disc, i_sob, 0) >= 4.5 then
-						%><div class='assess five' title='Дата: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Вид работы: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
+						%><div class='assess five' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%><%if not sob_vid_name = "" then response.write("&#10;Р’РёРґ СЂР°Р±РѕС‚С‹: " & sob_vid_name)%><%if not sob(i_disc, i_sob, 4) = "" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 4))%>'><%=sob(i_disc, i_sob, 0)%></div><%
 					end if
 				end if
 				if not sob(i_disc, i_sob, 6) = "" then
-					if sob(i_disc, i_sob, 6) = "1нб" or sob(i_disc, i_sob, 6) = "2нб" then
+					if sob(i_disc, i_sob, 6) = "1РЅР±" or sob(i_disc, i_sob, 6) = "2РЅР±" then
 						select case sob(i_disc, i_sob, 1)
 							case 1, 2, 3, 4
 								select case sob(i_disc, i_sob, 1)
 									case 1
-										nb_type_name = "Больничный"
+										nb_type_name = "Р‘РѕР»СЊРЅРёС‡РЅС‹Р№"
 									case 2
-										nb_type_name = "Дежурство"
+										nb_type_name = "Р”РµР¶СѓСЂСЃС‚РІРѕ"
 									case 3
-										nb_type_name = "Освобождение (заявление)"
+										nb_type_name = "РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ (Р·Р°СЏРІР»РµРЅРёРµ)"
 									case 4
-										nb_type_name = "Другое (уважительная)"
+										nb_type_name = "Р”СЂСѓРіРѕРµ (СѓРІР°Р¶РёС‚РµР»СЊРЅР°СЏ)"
 								end select
-								%><div class='assess uvnb' title='Дата: <%=sob(i_disc, i_sob, 3)%>&#10;Причина: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
+								%><div class='assess uvnb' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%>&#10;РџСЂРёС‡РёРЅР°: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
 							case 5, 6, 7
 								select case sob(i_disc, i_sob, 1)
 									case 5
-										nb_type_name = "Прогул"
+										nb_type_name = "РџСЂРѕРіСѓР»"
 									case 6
-										nb_type_name = "Удалён с занятия"
+										nb_type_name = "РЈРґР°Р»С‘РЅ СЃ Р·Р°РЅСЏС‚РёСЏ"
 									case 7
-										nb_type_name = "Другое (не уважительная)"
+										nb_type_name = "Р”СЂСѓРіРѕРµ (РЅРµ СѓРІР°Р¶РёС‚РµР»СЊРЅР°СЏ)"
 								end select
-								%><div class='assess nb' title='Дата: <%=sob(i_disc, i_sob, 3)%>&#10;Причина: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
+								%><div class='assess nb' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%>&#10;РџСЂРёС‡РёРЅР°: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
 							case else
-								nb_type_name = "Не указана"
-								%><div class='assess nullnb' title='Дата: <%=sob(i_disc, i_sob, 3)%>&#10;Причина: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;Описание: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
+								nb_type_name = "РќРµ СѓРєР°Р·Р°РЅР°"
+								%><div class='assess nullnb' title='Р”Р°С‚Р°: <%=sob(i_disc, i_sob, 3)%>&#10;РџСЂРёС‡РёРЅР°: <%=nb_type_name%><%if not sob(i_disc, i_sob, 2) = "" and not sob(i_disc, i_sob, 2) = "-" then response.write("&#10;РћРїРёСЃР°РЅРёРµ: " & sob(i_disc, i_sob, 2))%>'><%=sob(i_disc, i_sob, 6)%></div><%
 						end select
 					end if
 				end if
@@ -908,10 +908,10 @@ rs_ocen.close
 </table>
             <br>
 			<center>
-			<a href="disc_change.asp?go=1" class="button subinfo" >Вернуться к выбору дисциплин и ведомостей</a><br>
-			<a href="group_change.asp?go=1" class="button subinfo" >Вернуться к выбору группы</a><br>
-			<a href="help/03_9.asp" id="help" class="icon mif-info"> Помощь</a>
-			<a href="exit.asp" id="exit" class="mif-exit"> Выход</a>
+			<a href="disc_change.asp?go=1" class="button subinfo" >Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РґРёСЃС†РёРїР»РёРЅ Рё РІРµРґРѕРјРѕСЃС‚РµР№</a><br>
+			<a href="group_change.asp?go=1" class="button subinfo" >Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РіСЂСѓРїРїС‹</a><br>
+			<a href="help/03_9.asp" id="help" class="icon mif-info"> РџРѕРјРѕС‰СЊ</a>
+			<a href="exit.asp" id="exit" class="mif-exit"> Р’С‹С…РѕРґ</a>
 			</center>
             </td>
           </tr>

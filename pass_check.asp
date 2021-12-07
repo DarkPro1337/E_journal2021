@@ -1,17 +1,17 @@
-<% if session("user_fio") <> "Студент" then %>
+п»ї<% if session("user_fio") <> "РЎС‚СѓРґРµРЅС‚" then %>
 <%
 if DateDiff("d", session("pass_date"), date()) >= 335 And DateDiff("d", session("pass_date"), date()) < 365 then
 %>
 <div data-role="dialog" id="dialog" class="padding20 dialog" data-show=true data-type="info" data-windows-style=true data-close-button="true" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true">
     <center>
-    <h1>Ваш пароль скоро истечёт!</h1>
+    <h1>Р’Р°С€ РїР°СЂРѕР»СЊ СЃРєРѕСЂРѕ РёСЃС‚РµС‡С‘С‚!</h1>
     <p style="width: 75%">
-        Ваш пароль не менялся уже <% response.Write( DateDiff("m", session("pass_date"), date()) ) %> месяцев. Требуется поменять пароль как можно скорее, в случае не смены пароля в срок вы потеряете доступ к своей учётной записи. <br><br> До потери доступа к учётной записи осталось <% response.Write( 365 - DateDiff("d", session("pass_date"), date()) ) %> дн.
+        Р’Р°С€ РїР°СЂРѕР»СЊ РЅРµ РјРµРЅСЏР»СЃСЏ СѓР¶Рµ <% response.Write( DateDiff("m", session("pass_date"), date()) ) %> РјРµСЃСЏС†РµРІ. РўСЂРµР±СѓРµС‚СЃСЏ РїРѕРјРµРЅСЏС‚СЊ РїР°СЂРѕР»СЊ РєР°Рє РјРѕР¶РЅРѕ СЃРєРѕСЂРµРµ, РІ СЃР»СѓС‡Р°Рµ РЅРµ СЃРјРµРЅС‹ РїР°СЂРѕР»СЏ РІ СЃСЂРѕРє РІС‹ РїРѕС‚РµСЂСЏРµС‚Рµ РґРѕСЃС‚СѓРї Рє СЃРІРѕРµР№ СѓС‡С‘С‚РЅРѕР№ Р·Р°РїРёСЃРё. <br><br> Р”Рѕ РїРѕС‚РµСЂРё РґРѕСЃС‚СѓРїР° Рє СѓС‡С‘С‚РЅРѕР№ Р·Р°РїРёСЃРё РѕСЃС‚Р°Р»РѕСЃСЊ <% response.Write( 365 - DateDiff("d", session("pass_date"), date()) ) %> РґРЅ.
     </p>
     <form action="pass_update.asp" method="post">
         <input type="hidden" name="login" value="<%=session("user_fio")%>">
         <input type="hidden" name="pass" value="<%=session("pass")%>">
-        <button class="button block-shadow-info" type="submit">Сменить пароль</button>
+        <button class="button block-shadow-info" type="submit">РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ</button>
     </form>
     </center>
 </div>
@@ -20,15 +20,15 @@ elseif DateDiff("d", session("pass_date"), date()) >= 365 then
 %>
 <div data-role="dialog" id="Div1" class="padding20 dialog" data-show=true data-type="alert" data-windows-style=true data-overlay="true" data-overlay-color="op-dark">
     <center>
-    <h1>Ваш пароль истёк!</h1>
+    <h1>Р’Р°С€ РїР°СЂРѕР»СЊ РёСЃС‚С‘Рє!</h1>
     <p style="width: 75%">
-        Ваш пароль не менялся уже больше года. Доступ к учётной записи был утерян!<br><br>Пожалуйста, поменяйте пароль.
+        Р’Р°С€ РїР°СЂРѕР»СЊ РЅРµ РјРµРЅСЏР»СЃСЏ СѓР¶Рµ Р±РѕР»СЊС€Рµ РіРѕРґР°. Р”РѕСЃС‚СѓРї Рє СѓС‡С‘С‚РЅРѕР№ Р·Р°РїРёСЃРё Р±С‹Р» СѓС‚РµСЂСЏРЅ!<br><br>РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРјРµРЅСЏР№С‚Рµ РїР°СЂРѕР»СЊ.
     </p>
     <form action="pass_update.asp" method="post">
         <input type="hidden" name="login" value="<%=session("user_fio")%>">
         <input type="hidden" name="pass" value="<%=session("pass")%>">
-        <button class="button primary block-shadow-danger" type="submit">Сменить пароль</button>
-        <a href="exit.asp"><button class="button block-shadow-info" type="button">Выйти</button></a>
+        <button class="button primary block-shadow-danger" type="submit">РЎРјРµРЅРёС‚СЊ РїР°СЂРѕР»СЊ</button>
+        <a href="exit.asp"><button class="button block-shadow-info" type="button">Р’С‹Р№С‚Рё</button></a>
     </form>
     </center>
 </div>

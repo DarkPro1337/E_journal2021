@@ -1,4 +1,4 @@
-<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
+п»ї<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
 <link rel="shortcut icon" href="images/favicon.ico" />
 <head>
 	<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="css/loaders.css">
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/metro.min.js"></script>
-	<title>ИС "Электронный журнал". Перевод студентов</title>
+	<title>РРЎ "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р¶СѓСЂРЅР°Р»". РџРµСЂРµРІРѕРґ СЃС‚СѓРґРµРЅС‚РѕРІ</title>
     <style>
         summary 
         {
@@ -57,15 +57,15 @@
 <td>
     <!-- #include file="header.asp" -->
 <%
-'Защита от студентов
-if session("user") = "" or session("user") = "Студент" or session("user") = 0 then response.Redirect ("404.asp")
+'Р—Р°С‰РёС‚Р° РѕС‚ СЃС‚СѓРґРµРЅС‚РѕРІ
+if session("user") = "" or session("user") = "РЎС‚СѓРґРµРЅС‚" or session("user") = 0 then response.Redirect ("404.asp")
 
 confirm = request.querystring("confirm")
 
 if confirm = 1 then
 %>
 <center>
-<h4>Вы собираетесь перевести каждого студента каждой группы на курс выше, вы уверены?</h4>
+<h4>Р’С‹ СЃРѕР±РёСЂР°РµС‚РµСЃСЊ РїРµСЂРµРІРµСЃС‚Рё РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р° РєР°Р¶РґРѕР№ РіСЂСѓРїРїС‹ РЅР° РєСѓСЂСЃ РІС‹С€Рµ, РІС‹ СѓРІРµСЂРµРЅС‹?</h4>
 <script>
     function ShowHideMiniLoader(operation){
         if (operation == "hide"){
@@ -75,7 +75,7 @@ if confirm = 1 then
         }
     }
 </script>
-<a href="stud_update.asp?confirm=0"><button class="button primary" onclick="ShowHideMiniLoader('show')">Подтвердить<span class="mif-spinner3 mif-ani-spin" id="mini_loader" style="color: #fff; display: none; float: right; margin-left: 5px;"></span></button></a> <a href="group_change.asp"><button class="button danger">Вернуться назад</button></a>
+<a href="stud_update.asp?confirm=0"><button class="button primary" onclick="ShowHideMiniLoader('show')">РџРѕРґС‚РІРµСЂРґРёС‚СЊ<span class="mif-spinner3 mif-ani-spin" id="mini_loader" style="color: #fff; display: none; float: right; margin-left: 5px;"></span></button></a> <a href="group_change.asp"><button class="button danger">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a>
 </center>
 <%
 function Log(value)
@@ -89,7 +89,7 @@ end function
 
 elseif confirm = 0 then
 
-'Выполняем подключение к БД
+'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
 Set con=Server.CreateObject("ADODB.Connection")
 Set rs = Server.CreateObject("ADODB.RecordSet")
 Set rs2 = Server.CreateObject("ADODB.RecordSet")
@@ -115,12 +115,12 @@ if len(request.Form) > 0 then
         mm = mid(today, 4, 2)
         yyyy = mid(today, 7, 4)
         nowDate = mm + "/" + dd + "/" + yyyy
-        'Создаем подключение для запросов
+        'РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ
         strDbConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="& strdbpath & ";"
         Set objConn = Server.CreateObject("ADODB.Connection")
         objConn.Open(strDbConnection)
-        strSQL = "INSERT INTO tbl_group (group_name, group_ruk, spec, nb_edit_data) VALUES ('" & group_name & "', " & group_ruk & ", " & spec & ", #" & nowDate & "#);" 'Подготавливаем запрос
-        'Выполняем запрос
+        strSQL = "INSERT INTO tbl_group (group_name, group_ruk, spec, nb_edit_data) VALUES ('" & group_name & "', " & group_ruk & ", " & spec & ", #" & nowDate & "#);" 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
+        'Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃ
 	    objConn.Execute(strSQL)
         response.Redirect("stud_update.asp?confirm=0")
     elseif request.Form("useBackup") = "1" then
@@ -134,20 +134,20 @@ if len(request.Form) > 0 then
     end if
 end if
 
-'Формируем массив
-dim students(3000,5) 'Массив на 3000 студентов
+'Р¤РѕСЂРјРёСЂСѓРµРј РјР°СЃСЃРёРІ
+dim students(3000,5) 'РњР°СЃСЃРёРІ РЅР° 3000 СЃС‚СѓРґРµРЅС‚РѕРІ
 if rs.RecordCount > 0 then
 	ij = 1
 	cnt = 1
 	while rs.EOF <> true
 		students(ij,1) = rs.Fields(0) 'ID
-		students(ij,2) = rs.Fields(1) 'ФИО
-		students(ij,3) = rs.Fields(2) 'Текущая группа
-        students(ij,4) = 0 'Новая группа
+		students(ij,2) = rs.Fields(1) 'Р¤РРћ
+		students(ij,3) = rs.Fields(2) 'РўРµРєСѓС‰Р°СЏ РіСЂСѓРїРїР°
+        students(ij,4) = 0 'РќРѕРІР°СЏ РіСЂСѓРїРїР°
         rs3.Open "SELECT tbl_student.id_student, tbl_student.student_fio, tbl_group.id_group, tbl_group.group_name FROM tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name WHERE (((tbl_group.id_group)=" & students(ij,3) &"));", con, 3
-            'ГРУППЫ СПЕЦИАЛЬНОСТИ АТ
-            groupFrom = "11-АТ" ' Группа из которой переводим
-            groupTo   = "21-АТ" ' Группа в которую переводим
+            'Р“Р РЈРџРџР« РЎРџР•Р¦РРђР›Р¬РќРћРЎРўР РђРў
+            groupFrom = "11-РђРў" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "21-РђРў" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -160,8 +160,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "21-АТ" ' Группа из которой переводим
-            groupTo   = "31-АТ" ' Группа в которую переводим
+            groupFrom = "21-РђРў" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "31-РђРў" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -174,8 +174,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "31-АТ" ' Группа из которой переводим
-            groupTo   = "41-АТ" ' Группа в которую переводим
+            groupFrom = "31-РђРў" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "41-РђРў" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -188,15 +188,15 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "41-АТ" ' Группа из которой переводим
+            groupFrom = "41-РђРў" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 students(ij,4) = -1
             end if
-            '/АТ
+            '/РђРў
             
-            ' ГРУППЫ СПЕЦИАЛЬНОСТИ ВП
-            groupFrom = "11-ВП" ' Группа из которой переводим
-            groupTo   = "21-ВП" ' Группа в которую переводим
+            ' Р“Р РЈРџРџР« РЎРџР•Р¦РРђР›Р¬РќРћРЎРўР Р’Рџ
+            groupFrom = "11-Р’Рџ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "21-Р’Рџ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -209,8 +209,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "21-ВП" ' Группа из которой переводим
-            groupTo   = "31-ВП" ' Группа в которую переводим
+            groupFrom = "21-Р’Рџ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "31-Р’Рџ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -223,8 +223,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "31-ВП" ' Группа из которой переводим
-            groupTo   = "41-ВП" ' Группа в которую переводим
+            groupFrom = "31-Р’Рџ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "41-Р’Рџ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -237,15 +237,15 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "41-ВП" ' Группа из которой переводим
+            groupFrom = "41-Р’Рџ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 students(ij,4) = -1
             end if
-            '/ВП
+            '/Р’Рџ
 
-            ' ГРУППЫ СПЕЦИАЛЬНОСТИ ИС
-            groupFrom = "11-ИС" ' Группа из которой переводим
-            groupTo   = "21/12-ИС" ' Группа в которую переводим
+            ' Р“Р РЈРџРџР« РЎРџР•Р¦РРђР›Р¬РќРћРЎРўР РРЎ
+            groupFrom = "11-РРЎ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "21/12-РРЎ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -258,8 +258,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "21/12-ИС" ' Группа из которой переводим
-            groupTo   = "31/22-ИС" ' Группа в которую переводим
+            groupFrom = "21/12-РРЎ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "31/22-РРЎ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -272,8 +272,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "31/22-ИС" ' Группа из которой переводим
-            groupTo   = "41/32-ИС" ' Группа в которую переводим
+            groupFrom = "31/22-РРЎ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "41/32-РРЎ" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -286,15 +286,15 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "41/32-ИС" ' Группа из которой переводим
+            groupFrom = "41/32-РРЎ" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 students(ij,4) = -1
             end if
-            '/ИС
+            '/РРЎ
 
-            ' ГРУППЫ СПЕЦИАЛЬНОСТИ СВ
-            groupFrom = "11-СВ" ' Группа из которой переводим
-            groupTo   = "21-СВ" ' Группа в которую переводим
+            ' Р“Р РЈРџРџР« РЎРџР•Р¦РРђР›Р¬РќРћРЎРўР РЎР’
+            groupFrom = "11-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "21-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -307,8 +307,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "12-СВ" ' Группа из которой переводим
-            groupTo   = "22-СВ" ' Группа в которую переводим
+            groupFrom = "12-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "22-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -321,8 +321,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "21-СВ" ' Группа из которой переводим
-            groupTo   = "31-СВ" ' Группа в которую переводим
+            groupFrom = "21-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "31-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -335,8 +335,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "22-СВ" ' Группа из которой переводим
-            groupTo   = "32-СВ" ' Группа в которую переводим
+            groupFrom = "22-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "32-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -349,8 +349,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "31-СВ" ' Группа из которой переводим
-            groupTo   = "41-СВ" ' Группа в которую переводим
+            groupFrom = "31-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "41-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -363,8 +363,8 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "32-СВ" ' Группа из которой переводим
-            groupTo   = "42-СВ" ' Группа в которую переводим
+            groupFrom = "32-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "42-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -377,34 +377,13 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "41-СВ" ' Группа из которой переводим
-            if rs3.Fields(3) = groupFrom then
-                students(ij,4) = -1
-            end if
-
-            groupFrom = "42-СВ" ' Группа из которой переводим
-            groupTo   = "52-СВ" ' Группа в которую переводим
-            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
-                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
-                if rs4.RecordCount > 0 then
-                    students(ij,4) = rs4.Fields(0)
-                elseif rs4.RecordCount = 0 then
-                    students(ij,4) = -2
-                    students(ij,5) = groupTo
-                    group_miss()
-                end if
-                rs4.Close
-            end if
-
-            groupFrom = "52-СВ" ' Группа из которой переводим
+            groupFrom = "41-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 students(ij,4) = -1
             end if
-            '/СВ
 
-            ' ГРУППЫ СПЕЦИАЛЬНОСТИ ЭР
-            groupFrom = "11-ЭР" ' Группа из которой переводим
-            groupTo   = "21-ЭР" ' Группа в которую переводим
+            groupFrom = "42-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "52-РЎР’" ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
             if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
                 rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
                 if rs4.RecordCount > 0 then
@@ -417,39 +396,60 @@ if rs.RecordCount > 0 then
                 rs4.Close
             end if
 
-            groupFrom = "21-ЭР" ' Группа из которой переводим
-            groupTo   = "31-ЭР" ' Группа в которую переводим
-            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
-                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
-                if rs4.RecordCount > 0 then
-                    students(ij,4) = rs4.Fields(0)
-                elseif rs4.RecordCount = 0 then
-                    students(ij,4) = -2
-                    students(ij,5) = groupTo
-                    group_miss()
-                end if
-                rs4.Close
-            end if
-
-            groupFrom = "31-ЭР" ' Группа из которой переводим
-            groupTo   = "41-ЭР" ' Группа в которую переводим
-            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
-                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
-                if rs4.RecordCount > 0 then
-                    students(ij,4) = rs4.Fields(0)
-                elseif rs4.RecordCount = 0 then
-                    students(ij,4) = -2
-                    students(ij,5) = groupTo
-                    group_miss()
-                end if
-                rs4.Close
-            end if
-
-            groupFrom = "41-ЭР" ' Группа из которой переводим
+            groupFrom = "52-РЎР’" ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
             if rs3.Fields(3) = groupFrom then
                 students(ij,4) = -1
             end if
-            '/ЭР
+            '/РЎР’
+
+            ' Р“Р РЈРџРџР« РЎРџР•Р¦РРђР›Р¬РќРћРЎРўР Р­Р 
+            groupFrom = "11-Р­Р " ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "21-Р­Р " ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
+            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
+                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
+                if rs4.RecordCount > 0 then
+                    students(ij,4) = rs4.Fields(0)
+                elseif rs4.RecordCount = 0 then
+                    students(ij,4) = -2
+                    students(ij,5) = groupTo
+                    group_miss()
+                end if
+                rs4.Close
+            end if
+
+            groupFrom = "21-Р­Р " ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "31-Р­Р " ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
+            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
+                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
+                if rs4.RecordCount > 0 then
+                    students(ij,4) = rs4.Fields(0)
+                elseif rs4.RecordCount = 0 then
+                    students(ij,4) = -2
+                    students(ij,5) = groupTo
+                    group_miss()
+                end if
+                rs4.Close
+            end if
+
+            groupFrom = "31-Р­Р " ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            groupTo   = "41-Р­Р " ' Р“СЂСѓРїРїР° РІ РєРѕС‚РѕСЂСѓСЋ РїРµСЂРµРІРѕРґРёРј
+            if rs3.RecordCount > 0 AND rs3.Fields(3) = groupFrom then
+                rs4.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.group_name)='" & groupTo & "'));", con, 3
+                if rs4.RecordCount > 0 then
+                    students(ij,4) = rs4.Fields(0)
+                elseif rs4.RecordCount = 0 then
+                    students(ij,4) = -2
+                    students(ij,5) = groupTo
+                    group_miss()
+                end if
+                rs4.Close
+            end if
+
+            groupFrom = "41-Р­Р " ' Р“СЂСѓРїРїР° РёР· РєРѕС‚РѕСЂРѕР№ РїРµСЂРµРІРѕРґРёРј
+            if rs3.Fields(3) = groupFrom then
+                students(ij,4) = -1
+            end if
+            '/Р­Р 
             
         rs3.Close
 		ij = ij + 1
@@ -460,7 +460,7 @@ end if
 
 if len(request.Form) > 0 then
     if request.Form("update") = "1" then
-        'Резервное копирование БД, хранится в корне ИС на сервере
+        'Р РµР·РµСЂРІРЅРѕРµ РєРѕРїРёСЂРѕРІР°РЅРёРµ Р‘Р”, С…СЂР°РЅРёС‚СЃСЏ РІ РєРѕСЂРЅРµ РРЎ РЅР° СЃРµСЂРІРµСЂРµ
         dim fs
         set fs=Server.CreateObject("Scripting.FileSystemObject")
         dim CurrentDirectory
@@ -468,54 +468,54 @@ if len(request.Form) > 0 then
         fs.CopyFile CurrentDirectory + "/base.mdb", CurrentDirectory + "/base_backup.mdb"
         set fs = nothing
 
-        'Создаем подключение для запросов
+        'РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ
         strDbConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="& strdbpath & ";"
         Set objConn = Server.CreateObject("ADODB.Connection")
         objConn.Open(strDbConnection)
 
-        strSQL = "DELETE FROM tbl_itog" 'Чистим таблицу итог
+        strSQL = "DELETE FROM tbl_itog" 'Р§РёСЃС‚РёРј С‚Р°Р±Р»РёС†Сѓ РёС‚РѕРі
         objConn.Execute(strSQL)
-        strSQL = "DELETE FROM tbl_journal" 'Чистим таблицу журнал
+        strSQL = "DELETE FROM tbl_journal" 'Р§РёСЃС‚РёРј С‚Р°Р±Р»РёС†Сѓ Р¶СѓСЂРЅР°Р»
         objConn.Execute(strSQL)
-        strSQL = "DELETE FROM tbl_journal_del" 'Чистим таблицу журнал
+        strSQL = "DELETE FROM tbl_journal_del" 'Р§РёСЃС‚РёРј С‚Р°Р±Р»РёС†Сѓ Р¶СѓСЂРЅР°Р»
         objConn.Execute(strSQL)
-        strSQL = "DELETE FROM tbl_zan" 'Чистим таблицу журнал
+        strSQL = "DELETE FROM tbl_zan" 'Р§РёСЃС‚РёРј С‚Р°Р±Р»РёС†Сѓ Р¶СѓСЂРЅР°Р»
         objConn.Execute(strSQL)
 
-        for i = 1 to cnt 'Запрос выполняется для каждого студента
-	        if students(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-                if students(i, 4) > 0 then 'Если группа студента не относится к отчислению, т.е. -1 то тогда переносим его на следующий курс
-                    strSQL = "UPDATE tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name SET tbl_student.group_name = " & students(i,4) & " WHERE (((tbl_student.id_student)=" & students(i,1) & "));" 'Подготавливаем запрос
+        for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	        if students(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+                if students(i, 4) > 0 then 'Р•СЃР»Рё РіСЂСѓРїРїР° СЃС‚СѓРґРµРЅС‚Р° РЅРµ РѕС‚РЅРѕСЃРёС‚СЃСЏ Рє РѕС‚С‡РёСЃР»РµРЅРёСЋ, С‚.Рµ. -1 С‚Рѕ С‚РѕРіРґР° РїРµСЂРµРЅРѕСЃРёРј РµРіРѕ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РєСѓСЂСЃ
+                    strSQL = "UPDATE tbl_group INNER JOIN tbl_student ON tbl_group.id_group = tbl_student.group_name SET tbl_student.group_name = " & students(i,4) & " WHERE (((tbl_student.id_student)=" & students(i,1) & "));" 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
                     objConn.Execute(strSQL)
                 elseif students(i,4) = -1 then
-                    strSQL = "DELETE FROM tbl_student WHERE (((tbl_student.id_student)=" & students(i,1) & "));" 'Подготавливаем запрос
+                    strSQL = "DELETE FROM tbl_student WHERE (((tbl_student.id_student)=" & students(i,1) & "));" 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
                     objConn.Execute(strSQL)
                 end if
             end if
         next
 
-        response.Redirect("stud_update.asp?confirm=0") ' Избежание повторных переносов студентов из-за обновления страницы после POST запроса, сложная хрень, не пытайтесь вникнуть.
+        response.Redirect("stud_update.asp?confirm=0") ' РР·Р±РµР¶Р°РЅРёРµ РїРѕРІС‚РѕСЂРЅС‹С… РїРµСЂРµРЅРѕСЃРѕРІ СЃС‚СѓРґРµРЅС‚РѕРІ РёР·-Р·Р° РѕР±РЅРѕРІР»РµРЅРёСЏ СЃС‚СЂР°РЅРёС†С‹ РїРѕСЃР»Рµ POST Р·Р°РїСЂРѕСЃР°, СЃР»РѕР¶РЅР°СЏ С…СЂРµРЅСЊ, РЅРµ РїС‹С‚Р°Р№С‚РµСЃСЊ РІРЅРёРєРЅСѓС‚СЊ.
     end if
 end if
 %>
 <center>
 <% if group_missmatch > 0 then %>
-<h1 style="color: Red; font-weight: bold">Внимание!</h1>
-<h4>При выполнении данного запроса были найдены ошибки несоответсвия следующих групп студентов, следует добавить отсутсвующие группы в БД!</h2>
-<p><a href=#missmatch>Количество ошибок: <% response.Write(group_missmatch) %></a></p>
+<h1 style="color: Red; font-weight: bold">Р’РЅРёРјР°РЅРёРµ!</h1>
+<h4>РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё РґР°РЅРЅРѕРіРѕ Р·Р°РїСЂРѕСЃР° Р±С‹Р»Рё РЅР°Р№РґРµРЅС‹ РѕС€РёР±РєРё РЅРµСЃРѕРѕС‚РІРµС‚СЃРІРёСЏ СЃР»РµРґСѓСЋС‰РёС… РіСЂСѓРїРї СЃС‚СѓРґРµРЅС‚РѕРІ, СЃР»РµРґСѓРµС‚ РґРѕР±Р°РІРёС‚СЊ РѕС‚СЃСѓС‚СЃРІСѓСЋС‰РёРµ РіСЂСѓРїРїС‹ РІ Р‘Р”!</h2>
+<p><a href=#missmatch>РљРѕР»РёС‡РµСЃС‚РІРѕ РѕС€РёР±РѕРє: <% response.Write(group_missmatch) %></a></p>
 
 
 <details style="margin-bottom: 15px">
-<summary style="background: #2086bf; color: #fff; border-color: #2086bf; box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px;"><span class="icon mif-wrench"></span> Добавить отсутсвующую группу в БД</summary>
+<summary style="background: #2086bf; color: #fff; border-color: #2086bf; box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px;"><span class="icon mif-wrench"></span> Р”РѕР±Р°РІРёС‚СЊ РѕС‚СЃСѓС‚СЃРІСѓСЋС‰СѓСЋ РіСЂСѓРїРїСѓ РІ Р‘Р”</summary>
 
 <form name="addNew" action="stud_update.asp" method="post" style="margin-bottom: 0">
-Название группы
+РќР°Р·РІР°РЅРёРµ РіСЂСѓРїРїС‹
     <div class="input-control text" style="width: 75px">
-    <input type=text name="group_name" placeholder="11-АБ" required pattern="[0-9]{2}-[А-ЯЁ]{2}">
+    <input type=text name="group_name" placeholder="11-РђР‘" required pattern="[0-9]{2}-[Рђ-РЇРЃ]{2}">
     </div>
 	<div class="input-control text" style="width: 150px">
 	<select name="group_ruk"  required>
-        <option disabled selected value>Преподователь</option>
+        <option disabled selected value>РџСЂРµРїРѕРґРѕРІР°С‚РµР»СЊ</option>
 		<% rs5.Open "tbl_user", con
          set objId = rs5.Fields(0)
          set objName = rs5.Fields(1)
@@ -528,7 +528,7 @@ end if
     </div>
     <div class="input-control text" style="width: 150px">
     <select name="spec"  required>
-        <option disabled selected value>Описание</option>
+        <option disabled selected value>РћРїРёСЃР°РЅРёРµ</option>
 		<% rs5.Open "tbl_spec", con
          set objId = rs5.Fields(0)
          set objName = rs5.Fields(2)
@@ -541,25 +541,25 @@ end if
 	</div>
     
     <input type="hidden" name="addNewGroup" value=1 />
-	<button type="submit" class="button primary"><span class="icon mif-pencil"></span>  Добавить запись</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>  Сброс</button>
+	<button type="submit" class="button primary"><span class="icon mif-pencil"></span>В В Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ</button> <button type="reset" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button>
 </form>
 
 </details>
 <% elseif group_missmatch = 0 and groupSearch = "" then %>
 <form name="studUpdate" action="stud_update.asp" method="post" style="margin-bottom: 0; width: 50vw">
-<h4 style="color: #60a917;"><span class="icon mif-checkmark"></span> Ошибок несоотвтетсвия в БД не было обнаружено, всё готово к переводу студентов, выполнить?</h4>
-<h6 style="color: Gray;">В результате выполнения этого действия будет создана резервная копия БД (base_backup.mdb в корне ИС на сервере), в случае возникновения ошибок в работе Электронного журнала можно будет вернуться к предыдущей копии БД.</h6>
+<h4 style="color: #60a917;"><span class="icon mif-checkmark"></span> РћС€РёР±РѕРє РЅРµСЃРѕРѕС‚РІС‚РµС‚СЃРІРёСЏ РІ Р‘Р” РЅРµ Р±С‹Р»Рѕ РѕР±РЅР°СЂСѓР¶РµРЅРѕ, РІСЃС‘ РіРѕС‚РѕРІРѕ Рє РїРµСЂРµРІРѕРґСѓ СЃС‚СѓРґРµРЅС‚РѕРІ, РІС‹РїРѕР»РЅРёС‚СЊ?</h4>
+<h6 style="color: Gray;">Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РІС‹РїРѕР»РЅРµРЅРёСЏ СЌС‚РѕРіРѕ РґРµР№СЃС‚РІРёСЏ Р±СѓРґРµС‚ СЃРѕР·РґР°РЅР° СЂРµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ Р‘Р” (base_backup.mdb РІ РєРѕСЂРЅРµ РРЎ РЅР° СЃРµСЂРІРµСЂРµ), РІ СЃР»СѓС‡Р°Рµ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёСЏ РѕС€РёР±РѕРє РІ СЂР°Р±РѕС‚Рµ Р­Р»РµРєС‚СЂРѕРЅРЅРѕРіРѕ Р¶СѓСЂРЅР°Р»Р° РјРѕР¶РЅРѕ Р±СѓРґРµС‚ РІРµСЂРЅСѓС‚СЊСЃСЏ Рє РїСЂРµРґС‹РґСѓС‰РµР№ РєРѕРїРёРё Р‘Р”.</h6>
 <input type="hidden" name="update" value=1 />
-<button type="submit" class="button success"><span class="icon mif-magic-wand"></span>  Перевести студентов</button><br><br>
+<button type="submit" class="button success"><span class="icon mif-magic-wand"></span>В В РџРµСЂРµРІРµСЃС‚Рё СЃС‚СѓРґРµРЅС‚РѕРІ</button><br><br>
 </form>
 <%
 elseif groupSearch <> "" then
 %>
-<h6 style="color: Gray;">Вы находитесь в режиме фильтрации, для возврата к переводу студентов сбросьте фильтр нажатием кнопки "Сброс".</h6>
+<h6 style="color: Gray;">Р’С‹ РЅР°С…РѕРґРёС‚РµСЃСЊ РІ СЂРµР¶РёРјРµ С„РёР»СЊС‚СЂР°С†РёРё, РґР»СЏ РІРѕР·РІСЂР°С‚Р° Рє РїРµСЂРµРІРѕРґСѓ СЃС‚СѓРґРµРЅС‚РѕРІ СЃР±СЂРѕСЃСЊС‚Рµ С„РёР»СЊС‚СЂ РЅР°Р¶Р°С‚РёРµРј РєРЅРѕРїРєРё "РЎР±СЂРѕСЃ".</h6>
 <%
 end if 
 
-'Проверяем, существует ли копия БД в корне ИС на сервере
+'РџСЂРѕРІРµСЂСЏРµРј, СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё РєРѕРїРёСЏ Р‘Р” РІ РєРѕСЂРЅРµ РРЎ РЅР° СЃРµСЂРІРµСЂРµ
 dim f
 set fs=Server.CreateObject("Scripting.FileSystemObject")
 CurrentDirectory = Server.MapPath(".")
@@ -567,9 +567,9 @@ if fs.FileExists(CurrentDirectory + "/base_backup.mdb") then
     set f=fs.GetFile(CurrentDirectory + "/base_backup.mdb")
     %>
     <form name="backup" action="stud_update.asp" method="post" style="margin-bottom: 0; width: 50vw">
-    <h4 style="color: #2086bf;"><span class="icon mif-notification"></span> Была обнаружена резеврная копия БД от <% Response.Write(f.DateLastModified) %></h4>
+    <h4 style="color: #2086bf;"><span class="icon mif-notification"></span> Р‘С‹Р»Р° РѕР±РЅР°СЂСѓР¶РµРЅР° СЂРµР·РµРІСЂРЅР°СЏ РєРѕРїРёСЏ Р‘Р” РѕС‚ <% Response.Write(f.DateLastModified) %></h4>
     <input type="hidden" name="useBackup" value=1 />
-    <button type="submit" class="button primary"><span class="icon mif-undo"></span>  Вернуться на предыдующую копию БД</button><br><br>
+    <button type="submit" class="button primary"><span class="icon mif-undo"></span>В В Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР° РїСЂРµРґС‹РґСѓСЋС‰СѓСЋ РєРѕРїРёСЋ Р‘Р”</button><br><br>
     </form>
     <%
 end if
@@ -578,10 +578,10 @@ set fs = nothing
 %>
 
 <form name="filter" action="stud_update.asp" method="get" style="margin-bottom: 0">
-Фильтрация по группе
+Р¤РёР»СЊС‚СЂР°С†РёСЏ РїРѕ РіСЂСѓРїРїРµ
 	<div class="input-control text" style="width: 125px">
 	<select name="groupSearch" required>
-        <option disabled selected value>Выберите...</option>
+        <option disabled selected value>Р’С‹Р±РµСЂРёС‚Рµ...</option>
 		<% rs5.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group ORDER BY tbl_group.group_name;", con
          set objId = rs5.Fields("id_group")
          set objName = rs5.Fields("group_name")
@@ -592,20 +592,20 @@ set fs = nothing
            rs5.Close %>
 	</select>
 	</div>
-    <button type="submit" class="button primary"><span class="icon mif-filter"></span>  Выбрать</button> <a href="?confirm=0"><button type="button" class="button danger"><span class="icon mif-undo"></span>  Сброс</button></a><br><br>
+    <button type="submit" class="button primary"><span class="icon mif-filter"></span>В В Р’С‹Р±СЂР°С‚СЊ</button> <a href="?confirm=0"><button type="button" class="button danger"><span class="icon mif-undo"></span>В В РЎР±СЂРѕСЃ</button></a><br><br>
 </form>
 <table class="table striped hovered cell-hovered border bordered" style="width: 50vw">
 <thead align=center style="font-weight: bold">
-<tr><th>ID</th><th>ФИО</th><th>Текущая группа</th><th>Новая группа</th></tr>
+<tr><th>ID</th><th>Р¤РРћ</th><th>РўРµРєСѓС‰Р°СЏ РіСЂСѓРїРїР°</th><th>РќРѕРІР°СЏ РіСЂСѓРїРїР°</th></tr>
 </thead>
 <tbody align=center>
 <%
-for i = 1 to cnt 'Запрос выполняется для каждого студента
-	if students(i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		'Подготавливаем данные
+for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	if students(i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
 		response.Write("<tr>")
 		
-		'Рисуем таблицу
+		'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
 		response.Write("<td>" & students(i,1) & "</td>")
         response.Write("<td>" & students(i,2) & "</td>")
         
@@ -621,9 +621,9 @@ for i = 1 to cnt 'Запрос выполняется для каждого студента
         response.Write("</td>")
         
         if students(i,4) = -1 then
-            response.Write("<td style='color: green;'>Отчислен</td>")
+            response.Write("<td style='color: green;'>РћС‚С‡РёСЃР»РµРЅ</td>")
         elseif students(i,4) = -2 then
-            response.Write("<td title='Эта группа отсутсвует в БД!'><a name='missmatch' style='color: red; font-weight: bold'>" + students(i,5) + "</a></td>")
+            response.Write("<td title='Р­С‚Р° РіСЂСѓРїРїР° РѕС‚СЃСѓС‚СЃРІСѓРµС‚ РІ Р‘Р”!'><a name='missmatch' style='color: red; font-weight: bold'>" + students(i,5) + "</a></td>")
         else
         response.Write("<td>")
         rs2.Open "SELECT tbl_group.id_group, tbl_group.group_name FROM tbl_group WHERE (((tbl_group.id_group)=" & students(i,4) & "));", con
@@ -648,10 +648,10 @@ next
 <% end if %>
 <br>
 <center>
-<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору дисциплин и ведомостей</button><br>
-<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору группы</button><br>
-<a href="help/03_2.asp" ><button class="button success"><span class="icon mif-info"></span> Помощь</button></a>
-<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Выход</button></a>
+<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РґРёСЃС†РёРїР»РёРЅ Рё РІРµРґРѕРјРѕСЃС‚РµР№</button><br>
+<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РіСЂСѓРїРїС‹</button><br>
+<a href="help/03_2.asp" ><button class="button success"><span class="icon mif-info"></span> РџРѕРјРѕС‰СЊ</button></a>
+<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Р’С‹С…РѕРґ</button></a>
 </center>
 </td>
 </tr>

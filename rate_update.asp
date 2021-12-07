@@ -1,4 +1,4 @@
-<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
+п»ї<meta content="text/html; charset=windows-1251" http-equiv="content-type" />
 <link rel="shortcut icon" href="images/favicon.ico" />
 <head>
 	<meta content="text/html; charset=Windows-1251" http-equiv="content-type">
@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/metro-student.css">
 	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/metro.min.js"></script>
-	<title>ИС "Электронный журнал". Обновление рейтинга</title>
+	<title>РРЎ "Р­Р»РµРєС‚СЂРѕРЅРЅС‹Р№ Р¶СѓСЂРЅР°Р»". РћР±РЅРѕРІР»РµРЅРёРµ СЂРµР№С‚РёРЅРіР°</title>
 </head>
 <body>
 <body>
@@ -22,15 +22,15 @@
     <!-- #include file="header.asp" -->
 	<!-- #include file="pass_check.asp" -->
 <%
-'Защита от студентов
-if session("user") = "" or session("user") = "Студент" or session("user") = 0 then response.Redirect ("404.asp")
+'Р—Р°С‰РёС‚Р° РѕС‚ СЃС‚СѓРґРµРЅС‚РѕРІ
+if session("user") = "" or session("user") = "РЎС‚СѓРґРµРЅС‚" or session("user") = 0 then response.Redirect ("404.asp")
 
 confirm = request.querystring("confirm")
 
 if confirm = 1 then
 %>
 <center>
-<h4>Вы собираетесь обновить рейтинг, вы уверены?</h4>
+<h4>Р’С‹ СЃРѕР±РёСЂР°РµС‚РµСЃСЊ РѕР±РЅРѕРІРёС‚СЊ СЂРµР№С‚РёРЅРі, РІС‹ СѓРІРµСЂРµРЅС‹?</h4>
 <script>
     function ShowHideMiniLoader(operation){
         if (operation == "hide"){
@@ -40,32 +40,32 @@ if confirm = 1 then
         }
     }
 </script>
-<a href="rate_update.asp?confirm=0"><button class="button primary" onclick="ShowHideMiniLoader('show')">Подтвердить<span class="mif-spinner3 mif-ani-spin" id="mini_loader" style="color: #fff; display: none; float: right; margin-left: 5px;"></span></button></a> <a href="group_change.asp"><button class="button danger">Вернуться назад</button></a>
+<a href="rate_update.asp?confirm=0"><button class="button primary" onclick="ShowHideMiniLoader('show')">РџРѕРґС‚РІРµСЂРґРёС‚СЊ<span class="mif-spinner3 mif-ani-spin" id="mini_loader" style="color: #fff; display: none; float: right; margin-left: 5px;"></span></button></a> <a href="group_change.asp"><button class="button danger">Р’РµСЂРЅСѓС‚СЊСЃСЏ РЅР°Р·Р°Рґ</button></a>
 </center>
 <%
 elseif confirm = 0 then
-'Выполняем подключение к БД
+'Р’С‹РїРѕР»РЅСЏРµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє Р‘Р”
 Set con=Server.CreateObject("ADODB.Connection")
 Set rs = Server.CreateObject("ADODB.RecordSet")
 
 strdbpath=server.mappath("base.mdb")
 con.open "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & strdbpath
 rs.Open "RATING", con, 3, 3
-'Формируем массив
-dim students_rate(3000,5) 'Массив на 3000 пользователей
+'Р¤РѕСЂРјРёСЂСѓРµРј РјР°СЃСЃРёРІ
+dim students_rate(3000,5) 'РњР°СЃСЃРёРІ РЅР° 3000 РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 if rs.RecordCount > 0 then
 	ij = 1
 	cnt = 1
 	while rs.EOF <> true
-		students_rate (ij,1) = rs.Fields(3) 'ID пользователя
-		students_rate (ij,2) = rs.Fields(1) 'Текущий рейтинг
-		students_rate (ij,3) = rs.Fields(4)	'Старый рейтинг
+		students_rate (ij,1) = rs.Fields(3) 'ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+		students_rate (ij,2) = rs.Fields(1) 'РўРµРєСѓС‰РёР№ СЂРµР№С‚РёРЅРі
+		students_rate (ij,3) = rs.Fields(4)	'РЎС‚Р°СЂС‹Р№ СЂРµР№С‚РёРЅРі
 		ij = ij + 1
 		cnt = cnt + 1
 		rs.MoveNext
 	wend
 end if
-'Создаем подключение для запросов
+'РЎРѕР·РґР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РґР»СЏ Р·Р°РїСЂРѕСЃРѕРІ
 strdbpath=server.mappath("base.mdb")
 strDbConnection = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source="& strdbpath & ";"
 Set objConn = Server.CreateObject("ADODB.Connection")
@@ -74,21 +74,21 @@ objConn.Open(strDbConnection)
 <center>
 <table class="table striped hovered cell-hovered border bordered">
 <thead align=center style="font-weight: bold">
-<tr><td>Текущий рейтинг</td><td>Старый рейтинг</td><td>ID</td><td>Код запроса</td></tr>
+<tr><td>РўРµРєСѓС‰РёР№ СЂРµР№С‚РёРЅРі</td><td>РЎС‚Р°СЂС‹Р№ СЂРµР№С‚РёРЅРі</td><td>ID</td><td>РљРѕРґ Р·Р°РїСЂРѕСЃР°</td></tr>
 </thead>
 <tbody align=center>
 <%
-'Создаем таблицу
-for i = 1 to cnt 'Запрос выполняется для каждого студента
-	if students_rate (i,1) > 0 then 'Если пользователь в массиве имеет свой ID
-		'Подготавливаем данные
+'РЎРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ
+for i = 1 to cnt 'Р—Р°РїСЂРѕСЃ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃС‚СѓРґРµРЅС‚Р°
+	if students_rate (i,1) > 0 then 'Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РІ РјР°СЃСЃРёРІРµ РёРјРµРµС‚ СЃРІРѕР№ ID
+		'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј РґР°РЅРЅС‹Рµ
 		response.Write("<tr>")
 		newrate = students_rate (i,2) + students_rate (i,3)
 		id_st = students_rate (i,1)
-		strSQL = "UPDATE tbl_student SET rating_old = '"& newrate &"' WHERE id_student = "& id_st 'Подготавливаем запрос
-		'Рисуем таблицу
+		strSQL = "UPDATE tbl_student SET rating_old = '"& newrate &"' WHERE id_student = "& id_st 'РџРѕРґРіРѕС‚Р°РІР»РёРІР°РµРј Р·Р°РїСЂРѕСЃ
+		'Р РёСЃСѓРµРј С‚Р°Р±Р»РёС†Сѓ
 		response.Write("<td>" & round(students_rate (i,2), 2) & " </td><td> " & students_rate (i,3) & " </td><td> " & id_st & " </td><td> " & strSQL & "</td>")
-		'Выполняем запрос
+		'Р’С‹РїРѕР»РЅСЏРµРј Р·Р°РїСЂРѕСЃ
 		objConn.Execute(strSQL)
 		response.Write("</tr>")
 	end if
@@ -100,10 +100,10 @@ next
 <% end if %>
 <br>
 <center>
-<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору дисциплин и ведомостей</button><br>
-<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Вернуться к выбору группы</button><br>
-<a href="help/03_2.asp" ><button class="button success"><span class="icon mif-info"></span> Помощь</button></a>
-<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Выход</button></a>
+<a href="disc_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РґРёСЃС†РёРїР»РёРЅ Рё РІРµРґРѕРјРѕСЃС‚РµР№</button><br>
+<a href="group_change.asp?go=1"><button type="button" class="button subinfo">Р’РµСЂРЅСѓС‚СЊСЃСЏ Рє РІС‹Р±РѕСЂСѓ РіСЂСѓРїРїС‹</button><br>
+<a href="help/03_2.asp" ><button class="button success"><span class="icon mif-info"></span> РџРѕРјРѕС‰СЊ</button></a>
+<a href="exit.asp"><button class="button danger" ><span class="icon mif-exit"></span> Р’С‹С…РѕРґ</button></a>
 </center>
 </td>
 </tr>
